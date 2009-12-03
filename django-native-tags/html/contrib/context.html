@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>context - context manipulation tags &mdash; Django Native Tags v0.2 documentation</title>
+    <link rel="stylesheet" href="../sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="../sphinx_static/doctools.js"></script>
+    <link rel="top" title="Django Native Tags v0.2 documentation" href="../index.html" />
+    <link rel="up" title="Contrib Add Ons" href="index.html" />
+    <link rel="next" title="comparison - compare template variables" href="comparison.html" />
+    <link rel="prev" title="cal - create formatted HTMLCalendar" href="cal.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="comparison.html" title="comparison - compare template variables"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cal.html" title="cal - create formatted HTMLCalendar"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Django Native Tags v0.2 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Contrib Add Ons</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-native_tags.contrib.context">
+<h1><tt class="xref docutils literal"><span class="pre">context</span></tt> - context manipulation tags<a class="headerlink" href="#module-native_tags.contrib.context" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="native_tags.contrib.context.do_del">
+<tt class="descclassname">native_tags.contrib.context.</tt><tt class="descname">do_del</tt><big>(</big><em>context</em>, <em>*args</em><big>)</big><a class="headerlink" href="#native_tags.contrib.context.do_del" title="Permalink to this definition">¶</a></dt>
+<dd>Deletes template variables from the context
+This is a <a class="reference external" href="../concepts.html#function-tags"><em>function tag</em></a>.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.context.do_set">
+<tt class="descclassname">native_tags.contrib.context.</tt><tt class="descname">do_set</tt><big>(</big><em>context</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#native_tags.contrib.context.do_set" title="Permalink to this definition">¶</a></dt>
+<dd>Updates the context with the keyword arguments
+This is a <a class="reference external" href="../concepts.html#function-tags"><em>function tag</em></a>.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.context.document">
+<tt class="descclassname">native_tags.contrib.context.</tt><tt class="descname">document</tt><big>(</big><em>o</em><big>)</big><a class="headerlink" href="#native_tags.contrib.context.document" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the docstring for a given object
+This is a <a class="reference external" href="../concepts.html#function-tags"><em>function tag</em></a>. 
+This is a <a class="reference external" href="../concepts.html#filter-tags"><em>filter tag</em></a>.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.context.native_debug">
+<tt class="descclassname">native_tags.contrib.context.</tt><tt class="descname">native_debug</tt><big>(</big><big>)</big><a class="headerlink" href="#native_tags.contrib.context.native_debug" title="Permalink to this definition">¶</a></dt>
+<dd>None
+This is a <a class="reference external" href="../concepts.html#function-tags"><em>function tag</em></a>.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.context.render_block">
+<tt class="descclassname">native_tags.contrib.context.</tt><tt class="descname">render_block</tt><big>(</big><em>context</em>, <em>nodelist</em><big>)</big><a class="headerlink" href="#native_tags.contrib.context.render_block" title="Permalink to this definition">¶</a></dt>
+<dd>Simply renders the nodelist with the current context
+This is a <a class="reference external" href="../concepts.html#block-tags"><em>block tag</em></a>.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.context.template_block">
+<tt class="descclassname">native_tags.contrib.context.</tt><tt class="descname">template_block</tt><big>(</big><em>context</em>, <em>nodelist</em><big>)</big><a class="headerlink" href="#native_tags.contrib.context.template_block" title="Permalink to this definition">¶</a></dt>
+<dd>Return the rendered block&#8217;s content with the current context
+This is a <a class="reference external" href="../concepts.html#block-tags"><em>block tag</em></a>.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.context.template_string">
+<tt class="descclassname">native_tags.contrib.context.</tt><tt class="descname">template_string</tt><big>(</big><em>context</em>, <em>template</em><big>)</big><a class="headerlink" href="#native_tags.contrib.context.template_string" title="Permalink to this definition">¶</a></dt>
+<dd>Return the rendered template content with the current context
+This is a <a class="reference external" href="../concepts.html#function-tags"><em>function tag</em></a>.</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="cal.html"
+                                  title="previous chapter"><tt class="docutils literal docutils literal docutils literal"><span class="pre">cal</span></tt> - create formatted <tt class="docutils literal docutils literal docutils literal"><span class="pre">HTMLCalendar</span></tt></a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="comparison.html"
+                                  title="next chapter"><tt class="docutils literal docutils literal"><span class="pre">comparison</span></tt> - compare template variables</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../sphinx_sources/contrib/context.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="comparison.html" title="comparison - compare template variables"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cal.html" title="cal - create formatted HTMLCalendar"
+             >previous</a> |</li>
+        <li><a href="../index.html">Django Native Tags v0.2 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Contrib Add Ons</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Justin Quick &lt;justquick@gmail.com&gt;.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

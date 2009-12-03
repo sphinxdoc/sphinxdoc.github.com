@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>mapreduce - native map and reduce tags &mdash; Django Native Tags v0.2 documentation</title>
+    <link rel="stylesheet" href="../sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="../sphinx_static/doctools.js"></script>
+    <link rel="top" title="Django Native Tags v0.2 documentation" href="../index.html" />
+    <link rel="up" title="Contrib Add Ons" href="index.html" />
+    <link rel="next" title="math - mathematical operations" href="math.html" />
+    <link rel="prev" title="generic_markup - filters for converting plain text to HTML" href="generic_markup.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="math.html" title="math - mathematical operations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="generic_markup.html" title="generic_markup - filters for converting plain text to HTML"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Django Native Tags v0.2 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Contrib Add Ons</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-native_tags.contrib.mapreduce">
+<h1><tt class="xref docutils literal"><span class="pre">mapreduce</span></tt> - native <tt class="docutils literal"><span class="pre">map</span></tt> and <tt class="docutils literal"><span class="pre">reduce</span></tt> tags<a class="headerlink" href="#module-native_tags.contrib.mapreduce" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="native_tags.contrib.mapreduce.do_map">
+<tt class="descclassname">native_tags.contrib.mapreduce.</tt><tt class="descname">do_map</tt><big>(</big><em>func_name</em>, <em>*sequence</em><big>)</big><a class="headerlink" href="#native_tags.contrib.mapreduce.do_map" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<p>Return a list of the results of applying the function to the items of
+the argument sequence(s).</p>
+<p>Functions may be registered with <tt class="docutils literal"><span class="pre">native_tags</span></tt> 
+or can be <tt class="docutils literal"><span class="pre">builtins</span></tt> or from the <tt class="docutils literal"><span class="pre">operator</span></tt> module</p>
+<p>If more than one sequence is given, the
+function is called with an argument list consisting of the corresponding
+item of each sequence, substituting None for missing values when not all
+sequences have the same length.  If the function is None, return a list of
+the items of the sequence (or a list of tuples if more than one sequence).</p>
+<p>Syntax:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">map</span> <span class="o">[</span><span class="nv">function</span><span class="o">]</span> <span class="o">[</span><span class="nv">sequence</span><span class="o">]</span> <span class="cp">%}</span><span class="x">        </span>
+<span class="cp">{%</span> <span class="k">map</span> <span class="o">[</span><span class="nv">function</span><span class="o">]</span> <span class="o">[</span><span class="nv">item1</span> <span class="nv">item2</span> <span class="p">...</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">map</span> <span class="nv">sha1</span> <span class="nv">hello</span> <span class="nv">world</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>calculates:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="x">[sha1(hello), sha1(world)]</span>
+</pre></div>
+</div>
+</blockquote>
+<p>This is a <a class="reference external" href="../concepts.html#function-tags"><em>function tag</em></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.mapreduce.do_reduce">
+<tt class="descclassname">native_tags.contrib.mapreduce.</tt><tt class="descname">do_reduce</tt><big>(</big><em>func_name</em>, <em>*sequence</em><big>)</big><a class="headerlink" href="#native_tags.contrib.mapreduce.do_reduce" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<p>Apply a function of two arguments cumulatively to the items of a sequence,
+from left to right, so as to reduce the sequence to a single value.</p>
+<p>Functions may be registered with <tt class="docutils literal"><span class="pre">native_tags</span></tt> 
+or can be <tt class="docutils literal"><span class="pre">builtins</span></tt> or from the <tt class="docutils literal"><span class="pre">operator</span></tt> module</p>
+<p>Syntax:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">reduce</span> <span class="o">[</span><span class="nv">function</span><span class="o">]</span> <span class="o">[</span><span class="nv">sequence</span><span class="o">]</span> <span class="cp">%}</span><span class="x">        </span>
+<span class="cp">{%</span> <span class="k">reduce</span> <span class="o">[</span><span class="nv">function</span><span class="o">]</span> <span class="o">[</span><span class="nv">item1</span> <span class="nv">item2</span> <span class="p">...</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">reduce</span> <span class="nv">add</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>calculates:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="x">((((1+2)+3)+4)+5) = 15</span>
+</pre></div>
+</div>
+</blockquote>
+<p>This is a <a class="reference external" href="../concepts.html#function-tags"><em>function tag</em></a>.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="generic_markup.html"
+                                  title="previous chapter"><tt class="docutils literal docutils literal docutils literal"><span class="pre">generic_markup</span></tt> - filters for converting plain text to HTML</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="math.html"
+                                  title="next chapter"><tt class="docutils literal"><span class="pre">math</span></tt> - mathematical operations</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../sphinx_sources/contrib/mapreduce.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="math.html" title="math - mathematical operations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="generic_markup.html" title="generic_markup - filters for converting plain text to HTML"
+             >previous</a> |</li>
+        <li><a href="../index.html">Django Native Tags v0.2 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Contrib Add Ons</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Justin Quick &lt;justquick@gmail.com&gt;.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

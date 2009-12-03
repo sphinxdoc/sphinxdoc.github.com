@@ -1,0 +1,9 @@
+.. _contrib-baseencode:
+.. highlight:: django
+
+:mod:`baseencode` - :mod:`base64` encoding/decoding
+====================================================
+
+.. automodule:: native_tags.contrib.baseencode
+    :members:
+

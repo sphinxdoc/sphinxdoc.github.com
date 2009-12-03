@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>feeds - RSS feed parsing using feedparser &mdash; Django Native Tags v0.2 documentation</title>
+    <link rel="stylesheet" href="../sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="../sphinx_static/doctools.js"></script>
+    <link rel="top" title="Django Native Tags v0.2 documentation" href="../index.html" />
+    <link rel="up" title="Contrib Add Ons" href="index.html" />
+    <link rel="next" title="gchart - Google Charts via GChartWrapper" href="gchart.html" />
+    <link rel="prev" title="hash - MD5 and SHA tags" href="hash.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="gchart.html" title="gchart - Google Charts via GChartWrapper"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="hash.html" title="hash - MD5 and SHA tags"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Django Native Tags v0.2 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Contrib Add Ons</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-native_tags.contrib.feeds">
+<h1><tt class="xref docutils literal"><span class="pre">feeds</span></tt> - RSS feed parsing using <tt class="xref docutils literal"><span class="pre">feedparser</span></tt><a class="headerlink" href="#module-native_tags.contrib.feeds" title="Permalink to this headline">¶</a></h1>
+<p>Tags which can retrieve and parse RSS and Atom feeds, and return the
+results for use in templates.</p>
+<p>Based, in part, on the original idea by user baumer1122 and posted to
+djangosnippets at <a class="reference external" href="http://www.djangosnippets.org/snippets/311/">http://www.djangosnippets.org/snippets/311/</a></p>
+<dl class="function">
+<dt id="native_tags.contrib.feeds.include_feed">
+<tt class="descclassname">native_tags.contrib.feeds.</tt><tt class="descname">include_feed</tt><big>(</big><em>feed_url</em>, <em>*args</em><big>)</big><a class="headerlink" href="#native_tags.contrib.feeds.include_feed" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<p>Parse an RSS or Atom feed and render a given number of its items
+into HTML.</p>
+<p>It is <strong>highly</strong> recommended that you use <a class="reference external" href="http://www.djangoproject.com/documentation/cache/#template-fragment-caching">Django&#8217;s template
+fragment caching</a> to cache the output of this tag for a
+reasonable amount of time (e.g., one hour); polling a feed too
+often is impolite, wastes bandwidth and may lead to the feed
+provider banning your IP address.</p>
+<p>Arguments should be:</p>
+<ol class="arabic simple">
+<li>The URL of the feed to parse.</li>
+<li>The name of a template to use for rendering the results into HTML.</li>
+<li>The number of items to render (if not supplied, renders all
+items in the feed).</li>
+</ol>
+<p>The template used to render the results will receive two variables:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">items</span></tt></dt>
+<dd>A list of dictionaries representing feed items, each with
+&#8216;title&#8217;, &#8216;summary&#8217;, &#8216;link&#8217; and &#8216;date&#8217; members.</dd>
+<dt><tt class="docutils literal"><span class="pre">feed</span></tt></dt>
+<dd>The feed itself, for pulling out arbitrary attributes.</dd>
+</dl>
+<p>Requires the Universal Feed Parser, which can be obtained at
+<a class="reference external" href="http://feedparser.org/">http://feedparser.org/</a>. See <a class="reference external" href="http://feedparser.org/docs/">its documentation</a> for details of the
+parsed feed object.</p>
+<p>Syntax:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">include_feed</span> <span class="o">[</span><span class="nv">feed_url</span><span class="o">]</span> <span class="o">[</span><span class="nv">num_items</span><span class="o">]</span> <span class="o">[</span><span class="nv">template_name</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">include_feed</span> <span class="s2">&quot;http://www2.ljworld.com/rss/headlines/&quot;</span> <span class="m">10</span> <span class="nv">feed_includes</span><span class="o">/</span><span class="nv">ljworld_headlines.html</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+</blockquote>
+<p>This is a <a class="reference external" href="../concepts.html#function-tags"><em>function tag</em></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.feeds.parse_feed">
+<tt class="descclassname">native_tags.contrib.feeds.</tt><tt class="descname">parse_feed</tt><big>(</big><em>feed_url</em><big>)</big><a class="headerlink" href="#native_tags.contrib.feeds.parse_feed" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<p>Parses a given feed and returns the result in a given context
+variable.</p>
+<p>It is <strong>highly</strong> recommended that you use <a class="reference external" href="http://www.djangoproject.com/documentation/cache/#template-fragment-caching">Django&#8217;s template
+fragment caching</a> to cache the output of this tag for a
+reasonable amount of time (e.g., one hour); polling a feed too
+often is impolite, wastes bandwidth and may lead to the feed
+provider banning your IP address.</p>
+<p>Arguments should be:</p>
+<ol class="arabic simple">
+<li>The URL of the feed to parse.</li>
+</ol>
+<p>Requires the Universal Feed Parser, which can be obtained at
+<a class="reference external" href="http://feedparser.org/">http://feedparser.org/</a>. See <a class="reference external" href="http://feedparser.org/docs/">its documentation</a> for details of the
+parsed feed object.</p>
+<p>Syntax:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">parse_feed</span> <span class="o">[</span><span class="nv">feed_url</span><span class="o">]</span> <span class="k">as</span> <span class="o">[</span><span class="nv">varname</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">parse_feed</span> <span class="s2">&quot;http://www2.ljworld.com/rss/headlines/&quot;</span> <span class="k">as</span> <span class="nv">ljworld_feed</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+</blockquote>
+<p>This is a <a class="reference external" href="../concepts.html#function-tags"><em>function tag</em></a>.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="hash.html"
+                                  title="previous chapter"><tt class="docutils literal docutils literal"><span class="pre">hash</span></tt> - MD5 and SHA tags</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="gchart.html"
+                                  title="next chapter"><tt class="docutils literal"><span class="pre">gchart</span></tt> - Google Charts via <tt class="docutils literal"><span class="pre">GChartWrapper</span></tt></a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../sphinx_sources/contrib/feeds.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gchart.html" title="gchart - Google Charts via GChartWrapper"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="hash.html" title="hash - MD5 and SHA tags"
+             >previous</a> |</li>
+        <li><a href="../index.html">Django Native Tags v0.2 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Contrib Add Ons</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Justin Quick &lt;justquick@gmail.com&gt;.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

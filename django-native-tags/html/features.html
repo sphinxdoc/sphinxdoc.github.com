@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Features of Native Tags &mdash; Django Native Tags v0.2 documentation</title>
+    <link rel="stylesheet" href="sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.2',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="sphinx_static/doctools.js"></script>
+    <link rel="top" title="Django Native Tags v0.2 documentation" href="index.html" />
+    <link rel="next" title="Settings" href="configuration.html" />
+    <link rel="prev" title="Types of Tags" href="concepts.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="configuration.html" title="Settings"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="concepts.html" title="Types of Tags"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Django Native Tags v0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="features-of-native-tags">
+<h1>Features of Native Tags<a class="headerlink" href="#features-of-native-tags" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="quoted-strings">
+<h2>Quoted Strings<a class="headerlink" href="#quoted-strings" title="Permalink to this headline">¶</a></h2>
+<p>Using the <tt class="docutils literal"><span class="pre">shlex</span></tt> module, double/single quoted strings are interpreted as a single string element now.
+Take this example templatetag: <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">myfunc</span> <span class="pre">'hello</span> <span class="pre">world'</span> <span class="pre">%}</span></tt>. If you were to write your own templatetag from scratch to handle this
+when calling <tt class="docutils literal"><span class="pre">token.contents.split()</span></tt> it would return <tt class="docutils literal"><span class="pre">[&quot;'hello&quot;,</span> <span class="pre">&quot;world'&quot;]</span></tt> and ruin the continuity of the string. With Native Tags quoted
+strings act just like they should and the arguments parsed from the above example would be <tt class="docutils literal"><span class="pre">['hello</span> <span class="pre">world']</span></tt> as expected.</p>
+</div>
+<div class="section" id="keyword-arguments">
+<h2>Keyword arguments<a class="headerlink" href="#keyword-arguments" title="Permalink to this headline">¶</a></h2>
+<p>Arguments and keyword arguments are parsed out of the template to more closely match the Python API. That way
+<tt class="docutils literal"><span class="pre">{%</span> <span class="pre">myfunc</span> <span class="pre">arg1</span> <span class="pre">arg2</span> <span class="pre">kwarg1=value1</span> <span class="pre">kwarg2=value2</span> <span class="pre">%}</span></tt> represents the function with signature <tt class="docutils literal"><span class="pre">def</span> <span class="pre">myfunc(arg1,</span> <span class="pre">arg2,</span> <span class="pre">kwarg1=value1,</span> <span class="pre">kwarg2=value2)</span></tt>.
+This also means that <tt class="docutils literal"><span class="pre">*args</span></tt> and <tt class="docutils literal"><span class="pre">**kwargs</span></tt> can also be used in native tag functions.</p>
+</div>
+<div class="section" id="auto-resolve">
+<h2>Auto resolve<a class="headerlink" href="#auto-resolve" title="Permalink to this headline">¶</a></h2>
+<p>By default variables passed into Native Tags are by default resolved in the tag&#8217;s context. If a variable cannot be found,
+then the string is just returned. This functionality can be turned off by setting the tag function&#8217;s <tt class="docutils literal"><span class="pre">resolve</span></tt> attribute to <tt class="xref docutils literal"><span class="pre">False</span></tt>.</p>
+</div>
+<div class="section" id="auto-load">
+<h2>Auto load<a class="headerlink" href="#auto-load" title="Permalink to this headline">¶</a></h2>
+<p>Tired of calling <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">load</span> <span class="pre">%}</span></tt> on every single template you want to use your favorite tags on?
+Native Tags lets you define templatetags as part of the builtins which are loaded automagically.
+Just place your favorite templatetags into the <tt class="docutils literal"><span class="pre">DJANGO_BUILTIN_TAGS</span></tt> setting and kiss <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">load</span> <span class="pre">%}</span></tt> tags good bye</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Features of Native Tags</a><ul>
+<li><a class="reference external" href="#quoted-strings">Quoted Strings</a></li>
+<li><a class="reference external" href="#keyword-arguments">Keyword arguments</a></li>
+<li><a class="reference external" href="#auto-resolve">Auto resolve</a></li>
+<li><a class="reference external" href="#auto-load">Auto load</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="concepts.html"
+                                  title="previous chapter">Types of Tags</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="configuration.html"
+                                  title="next chapter">Settings</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="sphinx_sources/features.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="configuration.html" title="Settings"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="concepts.html" title="Types of Tags"
+             >previous</a> |</li>
+        <li><a href="index.html">Django Native Tags v0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Justin Quick &lt;justquick@gmail.com&gt;.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

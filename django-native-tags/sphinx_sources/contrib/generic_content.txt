@@ -1,0 +1,9 @@
+.. _contrib-generic_content:
+.. highlight:: django
+
+:mod:`generic_content` - access model content
+=============================================
+
+.. automodule:: native_tags.contrib.generic_content
+    :members:
+

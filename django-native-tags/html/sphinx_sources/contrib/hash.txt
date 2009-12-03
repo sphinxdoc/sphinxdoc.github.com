@@ -1,0 +1,9 @@
+.. _contrib-hash:
+.. highlight:: django
+
+:mod:`hash` - MD5 and SHA tags
+====================================
+
+.. automodule:: native_tags.contrib.hash
+    :members:
+

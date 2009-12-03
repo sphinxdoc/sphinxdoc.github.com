@@ -1,0 +1,9 @@
+.. _contrib-context:
+.. highlight:: django
+
+:mod:`context` - context manipulation tags
+==========================================
+
+.. automodule:: native_tags.contrib.context
+    :members:
+

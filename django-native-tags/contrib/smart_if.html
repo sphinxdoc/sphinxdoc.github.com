@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>smart_if - Smarter if tag &mdash; Django Native Tags v0.2 documentation</title>
+    <link rel="stylesheet" href="../sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="../sphinx_static/doctools.js"></script>
+    <link rel="top" title="Django Native Tags v0.2 documentation" href="../index.html" />
+    <link rel="up" title="Contrib Add Ons" href="index.html" />
+    <link rel="prev" title="serializers - wrapper for django.core.serializers" href="serializers.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="serializers.html" title="serializers - wrapper for django.core.serializers"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Django Native Tags v0.2 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Contrib Add Ons</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-native_tags.contrib.smart_if">
+<h1><tt class="xref docutils literal"><span class="pre">smart_if</span></tt> - Smarter if tag<a class="headerlink" href="#module-native_tags.contrib.smart_if" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="native_tags.contrib.smart_if.TestVar">
+<em class="property">class </em><tt class="descclassname">native_tags.contrib.smart_if.</tt><tt class="descname">TestVar</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#native_tags.contrib.smart_if.TestVar" title="Permalink to this definition">¶</a></dt>
+<dd>A basic self-resolvable object similar to a Django template variable. Used
+to assist with tests.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.smart_if.smart_if">
+<tt class="descclassname">native_tags.contrib.smart_if.</tt><tt class="descname">smart_if</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#native_tags.contrib.smart_if.smart_if" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<dl class="docutils">
+<dt>This tag was adapted to fit Native Tags from the djangosnippet:</dt>
+<dd><a class="reference external" href="http://www.djangosnippets.org/snippets/1350/">http://www.djangosnippets.org/snippets/1350/</a></dd>
+</dl>
+<p>A smarter {% if %} tag for django templates.</p>
+<p>While retaining current Django functionality, it also handles equality,
+greater than and less than operators. Some common case examples:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">if</span> <span class="nv">articles</span><span class="o">|</span><span class="nf">length</span> <span class="o">&gt;=</span> <span class="m">5</span> <span class="cp">%}</span><span class="x">...</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">if</span> <span class="s2">&quot;ifnotequal tag&quot;</span> <span class="p">!</span><span class="o">=</span> <span class="s2">&quot;beautiful&quot;</span> <span class="cp">%}</span><span class="x">...</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Arguments and operators _must_ have a space between them, so
+<tt class="docutils literal"><span class="pre">{%</span> <span class="pre">if</span> <span class="pre">1&gt;2</span> <span class="pre">%}</span></tt> is not a valid smart if tag.</p>
+<p>All supported operators are: <tt class="docutils literal"><span class="pre">or</span></tt>, <tt class="docutils literal"><span class="pre">and</span></tt>, <tt class="docutils literal"><span class="pre">in</span></tt>, <tt class="docutils literal"><span class="pre">=</span></tt> (or <tt class="docutils literal"><span class="pre">==</span></tt>),
+<tt class="docutils literal"><span class="pre">!=</span></tt>, <tt class="docutils literal"><span class="pre">&gt;</span></tt>, <tt class="docutils literal"><span class="pre">&gt;=</span></tt>, <tt class="docutils literal"><span class="pre">&lt;</span></tt> and <tt class="docutils literal"><span class="pre">&lt;=</span></tt>.</p>
+</blockquote>
+<p>This is a <a class="reference external" href="../concepts.html#comparison-tags"><em>comparison tag</em></a>.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="serializers.html"
+                                  title="previous chapter"><tt class="docutils literal docutils literal docutils literal"><span class="pre">serializers</span></tt> - wrapper for <tt class="docutils literal docutils literal docutils literal"><span class="pre">django.core.serializers</span></tt></a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../sphinx_sources/contrib/smart_if.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="serializers.html" title="serializers - wrapper for django.core.serializers"
+             >previous</a> |</li>
+        <li><a href="../index.html">Django Native Tags v0.2 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Contrib Add Ons</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Justin Quick &lt;justquick@gmail.com&gt;.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

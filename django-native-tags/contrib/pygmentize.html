@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pygmentize - using Pygments to highlight source code &mdash; Django Native Tags v0.2 documentation</title>
+    <link rel="stylesheet" href="../sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="../sphinx_static/doctools.js"></script>
+    <link rel="top" title="Django Native Tags v0.2 documentation" href="../index.html" />
+    <link rel="up" title="Contrib Add Ons" href="index.html" />
+    <link rel="next" title="rand - random number operations" href="rand.html" />
+    <link rel="prev" title="math - mathematical operations" href="math.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="rand.html" title="rand - random number operations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="math.html" title="math - mathematical operations"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Django Native Tags v0.2 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Contrib Add Ons</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-native_tags.contrib.pygmentize">
+<h1><tt class="xref docutils literal"><span class="pre">pygmentize</span></tt> - using <tt class="xref docutils literal"><span class="pre">Pygments</span></tt> to highlight source code<a class="headerlink" href="#module-native_tags.contrib.pygmentize" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="native_tags.contrib.pygmentize.highlight">
+<tt class="descclassname">native_tags.contrib.pygmentize.</tt><tt class="descname">highlight</tt><big>(</big><em>code</em>, <em>lexer</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#native_tags.contrib.pygmentize.highlight" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<p>Returns highlighted code <tt class="docutils literal"><span class="pre">div</span></tt> tag from <tt class="docutils literal"><span class="pre">HtmlFormatter</span></tt>
+Lexer is guessed by <tt class="docutils literal"><span class="pre">lexer</span></tt> name
+arguments are passed into the formatter</p>
+<blockquote>
+<p>Syntax:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">highlight</span> <span class="o">[</span><span class="nv">source</span> <span class="nv">code</span><span class="o">]</span> <span class="o">[</span><span class="nv">lexer</span> <span class="nv">name</span><span class="o">]</span> <span class="o">[</span><span class="nv">formatter</span> <span class="nv">options</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">highlight_style</span> <span class="s1">&#39;print &quot;Hello World&quot;&#39;</span> <span class="nv">python</span> <span class="nv">linenos</span><span class="o">=</span><span class="kp">true</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+</blockquote>
+</blockquote>
+<p>This is a <a class="reference external" href="../concepts.html#function-tags"><em>function tag</em></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.pygmentize.highlight_block">
+<tt class="descclassname">native_tags.contrib.pygmentize.</tt><tt class="descname">highlight_block</tt><big>(</big><em>context</em>, <em>nodelist</em>, <em>lexer</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#native_tags.contrib.pygmentize.highlight_block" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<p>Code is nodelist <tt class="docutils literal"><span class="pre">rendered</span></tt> in <tt class="docutils literal"><span class="pre">context</span></tt>
+Returns highlighted code <tt class="docutils literal"><span class="pre">div</span></tt> tag from <tt class="docutils literal"><span class="pre">HtmlFormatter</span></tt>
+Lexer is guessed by <tt class="docutils literal"><span class="pre">lexer</span></tt> name
+arguments are passed into the formatter</p>
+<blockquote>
+<p>Syntax:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">highlight_block</span> <span class="o">[</span><span class="nv">lexer</span> <span class="nv">name</span><span class="o">]</span> <span class="o">[</span><span class="nv">formatter</span> <span class="nv">options</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    ... source code ..</span>
+<span class="cp">{%</span> <span class="k">endhighlight_block</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">highlight_block</span> <span class="nv">python</span> <span class="nv">linenos</span><span class="o">=</span><span class="kp">true</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    print &#39;</span><span class="cp">{{</span> <span class="nv">request.path</span> <span class="cp">}}</span><span class="x">&#39;</span>
+<span class="cp">{%</span> <span class="k">endhighlight_block</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+</blockquote>
+</blockquote>
+<p>This is a <a class="reference external" href="../concepts.html#block-tags"><em>block tag</em></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.pygmentize.highlight_style">
+<tt class="descclassname">native_tags.contrib.pygmentize.</tt><tt class="descname">highlight_style</tt><big>(</big><em>cssclass='highlight'</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#native_tags.contrib.pygmentize.highlight_style" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<p>Returns the CSS from the <tt class="docutils literal"><span class="pre">HtmlFormatter</span></tt>.
+<tt class="docutils literal"><span class="pre">cssclass</span></tt> is the name of the <tt class="docutils literal"><span class="pre">div</span></tt> css class to use</p>
+<blockquote>
+<p>Syntax:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">highlight_style</span> <span class="o">[</span><span class="nv">cssclass</span><span class="o">]</span> <span class="o">[</span><span class="nv">formatter</span> <span class="nv">options</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">highlight_style</span> <span class="nv">code</span> <span class="nv">linenos</span><span class="o">=</span><span class="kp">true</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+</blockquote>
+</blockquote>
+<p>This is a <a class="reference external" href="../concepts.html#function-tags"><em>function tag</em></a>.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="math.html"
+                                  title="previous chapter"><tt class="docutils literal docutils literal docutils literal"><span class="pre">math</span></tt> - mathematical operations</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="rand.html"
+                                  title="next chapter"><tt class="docutils literal"><span class="pre">rand</span></tt> - random number operations</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../sphinx_sources/contrib/pygmentize.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="rand.html" title="rand - random number operations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="math.html" title="math - mathematical operations"
+             >previous</a> |</li>
+        <li><a href="../index.html">Django Native Tags v0.2 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Contrib Add Ons</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Justin Quick &lt;justquick@gmail.com&gt;.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

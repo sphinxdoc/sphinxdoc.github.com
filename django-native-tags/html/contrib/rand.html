@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>rand - random number operations &mdash; Django Native Tags v0.2 documentation</title>
+    <link rel="stylesheet" href="../sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="../sphinx_static/doctools.js"></script>
+    <link rel="top" title="Django Native Tags v0.2 documentation" href="../index.html" />
+    <link rel="up" title="Contrib Add Ons" href="index.html" />
+    <link rel="next" title="regex - regular expression pattern operations" href="regex.html" />
+    <link rel="prev" title="pygmentize - using Pygments to highlight source code" href="pygmentize.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="regex.html" title="regex - regular expression pattern operations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pygmentize.html" title="pygmentize - using Pygments to highlight source code"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Django Native Tags v0.2 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Contrib Add Ons</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-native_tags.contrib.rand">
+<h1><tt class="xref docutils literal"><span class="pre">rand</span></tt> - random number operations<a class="headerlink" href="#module-native_tags.contrib.rand" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="native_tags.contrib.rand.randchoice">
+<tt class="descclassname">native_tags.contrib.rand.</tt><tt class="descname">randchoice</tt><big>(</big><em>*seq</em><big>)</big><a class="headerlink" href="#native_tags.contrib.rand.randchoice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Choose a random element from a non-empty sequence.</p>
+<p>Syntax:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">randchoice</span> <span class="o">[</span><span class="nv">sequence</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">randchoice</span> <span class="o">[</span><span class="nv">choice1</span> <span class="nv">choice2</span> <span class="p">...</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.rand.randint">
+<tt class="descclassname">native_tags.contrib.rand.</tt><tt class="descname">randint</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#native_tags.contrib.rand.randint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return random integer in range [a, b], including both end points.</p>
+<p>Syntax:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">randint</span> <span class="o">[</span><span class="nv">a</span><span class="o">]</span> <span class="o">[</span><span class="nv">b</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.rand.random">
+<tt class="descclassname">native_tags.contrib.rand.</tt><tt class="descname">random</tt><big>(</big><big>)</big><a class="headerlink" href="#native_tags.contrib.rand.random" title="Permalink to this definition">¶</a></dt>
+<dd><p>random() -&gt; x in the interval [0, 1).</p>
+<p>Syntax:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">random</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.rand.randrange">
+<tt class="descclassname">native_tags.contrib.rand.</tt><tt class="descname">randrange</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#native_tags.contrib.rand.randrange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Choose a random item from range(start, stop[, step]).</p>
+<blockquote>
+This fixes the problem with randint() which includes the
+endpoint; in Python this is usually not what you want.
+Do not supply the &#8216;int&#8217;, &#8216;default&#8217;, and &#8216;maxwidth&#8217; arguments.</blockquote>
+<p>Syntax:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">randrange</span> <span class="o">[</span><span class="nv">stop</span><span class="o">]</span> <span class="o">[</span><span class="nv">options</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">randrange</span> <span class="o">[</span><span class="nv">start</span><span class="o">]</span> <span class="o">[</span><span class="nv">stop</span><span class="o">]</span> <span class="o">[</span><span class="nv">step</span><span class="o">]</span> <span class="o">[</span><span class="nv">options</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="pygmentize.html"
+                                  title="previous chapter"><tt class="docutils literal docutils literal docutils literal"><span class="pre">pygmentize</span></tt> - using <tt class="docutils literal docutils literal docutils literal"><span class="pre">Pygments</span></tt> to highlight source code</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="regex.html"
+                                  title="next chapter"><tt class="docutils literal"><span class="pre">regex</span></tt> - regular expression pattern operations</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../sphinx_sources/contrib/rand.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="regex.html" title="regex - regular expression pattern operations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pygmentize.html" title="pygmentize - using Pygments to highlight source code"
+             >previous</a> |</li>
+        <li><a href="../index.html">Django Native Tags v0.2 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Contrib Add Ons</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Justin Quick &lt;justquick@gmail.com&gt;.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

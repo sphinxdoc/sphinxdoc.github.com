@@ -1,0 +1,9 @@
+.. _contrib-pygmentize:
+.. highlight:: django
+
+:mod:`pygmentize` - using :mod:`Pygments` to highlight source code
+==================================================================
+
+.. automodule:: native_tags.contrib.pygmentize
+    :members:
+

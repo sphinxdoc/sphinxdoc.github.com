@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Types of Tags &mdash; Django Native Tags v0.2 documentation</title>
+    <link rel="stylesheet" href="sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.2',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="sphinx_static/doctools.js"></script>
+    <link rel="top" title="Django Native Tags v0.2 documentation" href="index.html" />
+    <link rel="next" title="Features of Native Tags" href="features.html" />
+    <link rel="prev" title="Change Log" href="changelog.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="features.html" title="Features of Native Tags"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="changelog.html" title="Change Log"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Django Native Tags v0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-native_tags.nodes">
+<h1>Types of Tags<a class="headerlink" href="#module-native_tags.nodes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="function-tags">
+<span id="id1"></span><h2>Function tags<a class="headerlink" href="#function-tags" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="native_tags.nodes.do_function">
+<tt class="descclassname">native_tags.nodes.</tt><tt class="descname">do_function</tt><big>(</big><em>parser</em>, <em>token</em><big>)</big><a class="headerlink" href="#native_tags.nodes.do_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a defined function on the passed arguments.
+Normally this returns the output of the function into the template.
+If the second to last argument is <tt class="docutils literal"><span class="pre">as</span></tt>, the result of the function is stored in the context and is named whatever the last argument is.</p>
+<p>Syntax:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="x">{% [function] [var args...] [name=value kwargs...] [as varname] %}</span>
+</pre></div>
+</div>
+<p>Examples:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">search</span> <span class="s1">&#39;^(\d{3})$&#39;</span> <span class="m">800</span> <span class="k">as</span> <span class="nv">match</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">map</span> <span class="nv">sha1</span> <span class="nv">hello</span> <span class="nv">world</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="comparison-tags">
+<span id="id2"></span><h2>Comparison tags<a class="headerlink" href="#comparison-tags" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="native_tags.nodes.do_comparison">
+<tt class="descclassname">native_tags.nodes.</tt><tt class="descname">do_comparison</tt><big>(</big><em>parser</em>, <em>token</em><big>)</big><a class="headerlink" href="#native_tags.nodes.do_comparison" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compares passed arguments. 
+Attached functions should return boolean <tt class="xref docutils literal"><span class="pre">True</span></tt> or <tt class="xref docutils literal"><span class="pre">False</span></tt>.
+If the attached function returns <tt class="xref docutils literal"><span class="pre">True</span></tt>, the first node list is rendered.
+If the attached function returns <tt class="xref docutils literal"><span class="pre">False</span></tt>, the second optional node list is rendered (part after the <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">else</span> <span class="pre">%}</span></tt> statement). 
+If the last argument in the tag is <tt class="docutils literal"><span class="pre">negate</span></tt>, then the opposite node list is rendered (like an <tt class="docutils literal"><span class="pre">ifnot</span></tt> tag).</p>
+<p>Syntax:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">if_</span><span class="o">[</span><span class="nv">comparison</span><span class="o">]</span> <span class="o">[</span><span class="nv">var</span> <span class="nv">args</span><span class="p">...</span><span class="o">]</span> <span class="o">[</span><span class="nv">name</span><span class="o">=</span><span class="nv">value</span> <span class="nv">kwargs</span><span class="p">...</span><span class="o">]</span> <span class="o">[</span><span class="nv">negate</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    </span><span class="c">{# first node list in here #}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    </span><span class="c">{# second optional node list in here #}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endif_</span><span class="o">[</span><span class="nv">comparison</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Supported comparisons are <tt class="docutils literal"><span class="pre">match</span></tt>, <tt class="docutils literal"><span class="pre">find</span></tt>, <tt class="docutils literal"><span class="pre">startswith</span></tt>, <tt class="docutils literal"><span class="pre">endswith</span></tt>,
+<tt class="docutils literal"><span class="pre">less</span></tt>, <tt class="docutils literal"><span class="pre">less_or_equal</span></tt>, <tt class="docutils literal"><span class="pre">greater</span></tt> and <tt class="docutils literal"><span class="pre">greater_or_equal</span></tt> and many more.
+Checkout the <a class="reference external" href="contrib/index.html#contrib-index"><em>Contrib Add Ons</em></a> for more examples</p>
+<p>Examples:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">if_less</span> <span class="nv">some_object.id</span> <span class="m">3</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{{</span> <span class="nv">some_object</span> <span class="cp">}}</span><span class="x"> has an id less than 3.</span>
+<span class="cp">{%</span> <span class="k">endif_less</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">if_match</span> <span class="nv">request.path</span> <span class="s1">&#39;^/$&#39;</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">Welcome home</span>
+<span class="cp">{%</span> <span class="k">endif_match</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="block-tags">
+<span id="id3"></span><h2>Block tags<a class="headerlink" href="#block-tags" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="native_tags.nodes.do_block">
+<tt class="descclassname">native_tags.nodes.</tt><tt class="descname">do_block</tt><big>(</big><em>parser</em>, <em>token</em><big>)</big><a class="headerlink" href="#native_tags.nodes.do_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process several nodes inside a single block
+Block functions take <tt class="docutils literal"><span class="pre">context</span></tt>, <tt class="docutils literal"><span class="pre">nodelist</span></tt> as first arguments
+If the second to last argument is <tt class="docutils literal"><span class="pre">as</span></tt>, the rendered result is stored in the context and is named whatever the last argument is.</p>
+<p>Syntax:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="x">{% [block] [var args...] [name=value kwargs...] [as varname] %}</span>
+<span class="x">    ... nodelist ...</span>
+<span class="cp">{%</span> <span class="k">end</span><span class="o">[</span><span class="nb">block</span><span class="o">]</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Examples:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">render_block</span> <span class="k">as</span> <span class="nv">rendered_output</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    </span><span class="cp">{{</span> <span class="nv">request.path</span> <span class="cp">}}</span><span class="x">/blog/</span><span class="cp">{{</span> <span class="nv">blog.slug</span> <span class="cp">}}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">endrender_block</span> <span class="cp">%}</span><span class="x"></span>
+
+<span class="cp">{%</span> <span class="k">highlight_block</span> <span class="nv">python</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    import this</span>
+<span class="cp">{%</span> <span class="k">endhighlight_block</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="filter-tags">
+<span id="id4"></span><h2>Filter tags<a class="headerlink" href="#filter-tags" title="Permalink to this headline">¶</a></h2>
+<p>Native Filter tags are pretty much the same as regular Django filter tags.
+There is no special sauce here because the arguments that you can pass filter tags is very limited and is currently being expanded <a class="reference external" href="http://code.djangoproject.com/ticket/1199">in this issue</a>.
+Filters take the piped value as the first argument and as of now <em>only one</em> extra argument like so:</p>
+<div class="highlight-django"><div class="highlight"><pre><span class="cp">{{</span> <span class="nv">value</span><span class="o">|</span><span class="nf">filter</span><span class="o">:</span><span class="nv">arg</span> <span class="cp">}}</span><span class="x"></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Types of Tags</a><ul>
+<li><a class="reference external" href="#function-tags">Function tags</a></li>
+<li><a class="reference external" href="#comparison-tags">Comparison tags</a></li>
+<li><a class="reference external" href="#block-tags">Block tags</a></li>
+<li><a class="reference external" href="#filter-tags">Filter tags</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="changelog.html"
+                                  title="previous chapter">Change Log</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="features.html"
+                                  title="next chapter">Features of Native Tags</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="sphinx_sources/concepts.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="features.html" title="Features of Native Tags"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="changelog.html" title="Change Log"
+             >previous</a> |</li>
+        <li><a href="index.html">Django Native Tags v0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Justin Quick &lt;justquick@gmail.com&gt;.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

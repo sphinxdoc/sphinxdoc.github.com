@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>comparison - compare template variables &mdash; Django Native Tags v0.2 documentation</title>
+    <link rel="stylesheet" href="../sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.2',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="../sphinx_static/doctools.js"></script>
+    <link rel="top" title="Django Native Tags v0.2 documentation" href="../index.html" />
+    <link rel="up" title="Contrib Add Ons" href="index.html" />
+    <link rel="next" title="hash - MD5 and SHA tags" href="hash.html" />
+    <link rel="prev" title="context - context manipulation tags" href="context.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="hash.html" title="hash - MD5 and SHA tags"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="context.html" title="context - context manipulation tags"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Django Native Tags v0.2 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Contrib Add Ons</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-native_tags.contrib.comparison">
+<h1><tt class="xref docutils literal"><span class="pre">comparison</span></tt> - compare template variables<a class="headerlink" href="#module-native_tags.contrib.comparison" title="Permalink to this headline">¶</a></h1>
+<p>Comparison tags</p>
+<div class="section" id="tags-supported-by-django-template-utils">
+<h2>Tags supported by <tt class="docutils literal"><span class="pre">django-template-utils</span></tt><a class="headerlink" href="#tags-supported-by-django-template-utils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="native_tags.contrib.comparison.greater">
+<tt class="descclassname">native_tags.contrib.comparison.</tt><tt class="descname">greater</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#native_tags.contrib.comparison.greater" title="Permalink to this definition">¶</a></dt>
+<dd>True if x is greater than y
+This is a <a class="reference external" href="../concepts.html#comparison-tags"><em>comparison tag</em></a>.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.comparison.greater_or_equal">
+<tt class="descclassname">native_tags.contrib.comparison.</tt><tt class="descname">greater_or_equal</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#native_tags.contrib.comparison.greater_or_equal" title="Permalink to this definition">¶</a></dt>
+<dd>True if x is greater than or equal to y
+This is a <a class="reference external" href="../concepts.html#comparison-tags"><em>comparison tag</em></a>.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.comparison.less">
+<tt class="descclassname">native_tags.contrib.comparison.</tt><tt class="descname">less</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#native_tags.contrib.comparison.less" title="Permalink to this definition">¶</a></dt>
+<dd>True if x is less than y
+This is a <a class="reference external" href="../concepts.html#comparison-tags"><em>comparison tag</em></a>.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.comparison.less_or_equal">
+<tt class="descclassname">native_tags.contrib.comparison.</tt><tt class="descname">less_or_equal</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#native_tags.contrib.comparison.less_or_equal" title="Permalink to this definition">¶</a></dt>
+<dd>True if x is less than or equal to y
+This is a <a class="reference external" href="../concepts.html#comparison-tags"><em>comparison tag</em></a>.</dd></dl>
+
+</div>
+<div class="section" id="new-comparison-tags">
+<h2>New comparison tags<a class="headerlink" href="#new-comparison-tags" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="native_tags.contrib.comparison.startswith">
+<tt class="descclassname">native_tags.contrib.comparison.</tt><tt class="descname">startswith</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#native_tags.contrib.comparison.startswith" title="Permalink to this definition">¶</a></dt>
+<dd>String comparison. True if x startswith y
+This is a <a class="reference external" href="../concepts.html#comparison-tags"><em>comparison tag</em></a>.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.comparison.endswith">
+<tt class="descclassname">native_tags.contrib.comparison.</tt><tt class="descname">endswith</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#native_tags.contrib.comparison.endswith" title="Permalink to this definition">¶</a></dt>
+<dd>String comparison. True if x endswith y
+This is a <a class="reference external" href="../concepts.html#comparison-tags"><em>comparison tag</em></a>.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.comparison.contains">
+<tt class="descclassname">native_tags.contrib.comparison.</tt><tt class="descname">contains</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#native_tags.contrib.comparison.contains" title="Permalink to this definition">¶</a></dt>
+<dd>String comparison. True if x contains y anywhere
+This is a <a class="reference external" href="../concepts.html#comparison-tags"><em>comparison tag</em></a>.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.comparison.setting">
+<tt class="descclassname">native_tags.contrib.comparison.</tt><tt class="descname">setting</tt><big>(</big><em>x</em><big>)</big><a class="headerlink" href="#native_tags.contrib.comparison.setting" title="Permalink to this definition">¶</a></dt>
+<dd>True if setting x is defined in your settings
+This is a <a class="reference external" href="../concepts.html#comparison-tags"><em>comparison tag</em></a>.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.comparison.divisible_by">
+<tt class="descclassname">native_tags.contrib.comparison.</tt><tt class="descname">divisible_by</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#native_tags.contrib.comparison.divisible_by" title="Permalink to this definition">¶</a></dt>
+<dd>Numeric comparison. True if x is divisible by y
+This is a <a class="reference external" href="../concepts.html#comparison-tags"><em>comparison tag</em></a>.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.comparison.superset">
+<tt class="descclassname">native_tags.contrib.comparison.</tt><tt class="descname">superset</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#native_tags.contrib.comparison.superset" title="Permalink to this definition">¶</a></dt>
+<dd>Set comparison. True if x is a superset of y
+This is a <a class="reference external" href="../concepts.html#comparison-tags"><em>comparison tag</em></a>.</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.contrib.comparison.subset">
+<tt class="descclassname">native_tags.contrib.comparison.</tt><tt class="descname">subset</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#native_tags.contrib.comparison.subset" title="Permalink to this definition">¶</a></dt>
+<dd>Set comparison. True if x is a subset of y
+This is a <a class="reference external" href="../concepts.html#comparison-tags"><em>comparison tag</em></a>.</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href=""><tt class="docutils literal"><span class="pre">comparison</span></tt> - compare template variables</a><ul>
+<li><a class="reference external" href="#tags-supported-by-django-template-utils">Tags supported by <tt class="docutils literal"><span class="pre">django-template-utils</span></tt></a></li>
+<li><a class="reference external" href="#new-comparison-tags">New comparison tags</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="context.html"
+                                  title="previous chapter"><tt class="docutils literal docutils literal"><span class="pre">context</span></tt> - context manipulation tags</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="hash.html"
+                                  title="next chapter"><tt class="docutils literal"><span class="pre">hash</span></tt> - MD5 and SHA tags</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../sphinx_sources/contrib/comparison.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="hash.html" title="hash - MD5 and SHA tags"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="context.html" title="context - context manipulation tags"
+             >previous</a> |</li>
+        <li><a href="../index.html">Django Native Tags v0.2 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Contrib Add Ons</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Justin Quick &lt;justquick@gmail.com&gt;.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Decorators &mdash; Django Native Tags v0.2 documentation</title>
+    <link rel="stylesheet" href="sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.2',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="sphinx_static/doctools.js"></script>
+    <link rel="top" title="Django Native Tags v0.2 documentation" href="index.html" />
+    <link rel="next" title="Contrib Add Ons" href="contrib/index.html" />
+    <link rel="prev" title="Settings" href="configuration.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="contrib/index.html" title="Contrib Add Ons"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="configuration.html" title="Settings"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Django Native Tags v0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-native_tags.decorators">
+<span id="decorators"></span><h1>Decorators<a class="headerlink" href="#module-native_tags.decorators" title="Permalink to this headline">¶</a></h1>
+<p>The decorators that come with this app are there for convienence but are not necessary to use.
+Their purpose is to just set some important attributes on the wrapped function and maintain docstrings.</p>
+<p>The normal syntax (without decorators):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">myfunc</span><span class="p">():</span>
+    <span class="k">return</span>
+<span class="n">myfunc</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">myfunc</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;my_function_tag&#39;</span>
+</pre></div>
+</div>
+<p>Is equivalent to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">native_tags.decorators</span> <span class="kn">import</span> <span class="n">function</span>
+
+<span class="nd">@function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;my_function_tag&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">myfunc</span><span class="p">():</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+<div class="section" id="important-attributes">
+<h2>Important Attributes<a class="headerlink" href="#important-attributes" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<p><tt class="docutils literal"><span class="pre">function</span></tt>, <tt class="docutils literal"><span class="pre">filter</span></tt>, <tt class="docutils literal"><span class="pre">comparison</span></tt>, <tt class="docutils literal"><span class="pre">block</span></tt> - boolean. Determines which kind of tag the function represents.
+A function can have multiple uses (eg. function and filter)</p>
+<p><tt class="docutils literal"><span class="pre">name</span></tt> - string. The actual name of the tag to use in the template. Defaults to the function name.</p>
+<p><tt class="docutils literal"><span class="pre">resolve</span></tt> - boolean. If <tt class="xref docutils literal"><span class="pre">True</span></tt>, all argments are resolved in the context of the tag.
+Set to <tt class="xref docutils literal"><span class="pre">False</span></tt> to parse your own raw text arguments. Default is <tt class="xref docutils literal"><span class="pre">True</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">takes_context</span></tt> - boolean. If <tt class="xref docutils literal"><span class="pre">True</span></tt> the context itself is prepended to the function arguments. Default is <tt class="xref docutils literal"><span class="pre">False</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">inclusion</span></tt> - boolean. If <tt class="xref docutils literal"><span class="pre">True</span></tt> then the function is treated as an inclusion tag. Inclusion tags work a bit differently in
+native tags, the function must return a tuple of (<tt class="docutils literal"><span class="pre">template_name</span></tt>, <tt class="docutils literal"><span class="pre">context</span></tt>). This lets you dynamically define the name of
+the template to use in rendering.</p>
+<p><tt class="docutils literal"><span class="pre">apply_filters</span></tt> - boolean. If <tt class="xref docutils literal"><span class="pre">True</span></tt>, the filter expressions are resolved for each argument and keyword argument if present.
+Default is <tt class="xref docutils literal"><span class="pre">True</span></tt></p>
+</blockquote>
+</div>
+<div class="section" id="decorator-types">
+<h2>Decorator Types<a class="headerlink" href="#decorator-types" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<dl class="function">
+<dt id="native_tags.decorators.function">
+<tt class="descclassname">native_tags.decorators.</tt><tt class="descname">function</tt><big>(</big><em>inner</em>, <em>**options</em><big>)</big><a class="headerlink" href="#native_tags.decorators.function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function tag function decorator</p>
+<p>Syntax:</p>
+<div class="highlight-python"><pre>@filter([**options]):
+def my_function([*args], [**kwargs]):
+    return args, kwargs</pre>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.decorators.comparison">
+<tt class="descclassname">native_tags.decorators.</tt><tt class="descname">comparison</tt><big>(</big><em>inner</em>, <em>**options</em><big>)</big><a class="headerlink" href="#native_tags.decorators.comparison" title="Permalink to this definition">¶</a></dt>
+<dd><p>Comparison tag function decorator</p>
+<p>Syntax:</p>
+<div class="highlight-python"><pre>@comparison([**options]):
+def my_comparison([*vars], [**tag_options]):
+    return True</pre>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.decorators.block">
+<tt class="descclassname">native_tags.decorators.</tt><tt class="descname">block</tt><big>(</big><em>inner</em>, <em>**options</em><big>)</big><a class="headerlink" href="#native_tags.decorators.block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Block tag function decorator</p>
+<p>Syntax:</p>
+<div class="highlight-python"><pre>@block([**options])
+def my_tag_function(context, nodelist, [*vars], [**tag_options]):
+    return nodelist.render(context)</pre>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="native_tags.decorators.filter">
+<tt class="descclassname">native_tags.decorators.</tt><tt class="descname">filter</tt><big>(</big><em>inner</em>, <em>**options</em><big>)</big><a class="headerlink" href="#native_tags.decorators.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter tag function decorator</p>
+<p>Syntax:</p>
+<div class="highlight-python"><pre>@filter([**options]):
+def my_filter(value, arg):
+    return value</pre>
+</div>
+</dd></dl>
+
+</blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Decorators</a><ul>
+<li><a class="reference external" href="#important-attributes">Important Attributes</a></li>
+<li><a class="reference external" href="#decorator-types">Decorator Types</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="configuration.html"
+                                  title="previous chapter">Settings</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="contrib/index.html"
+                                  title="next chapter">Contrib Add Ons</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="sphinx_sources/decorators.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="contrib/index.html" title="Contrib Add Ons"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="configuration.html" title="Settings"
+             >previous</a> |</li>
+        <li><a href="index.html">Django Native Tags v0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Justin Quick &lt;justquick@gmail.com&gt;.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>
