@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Examples &mdash; PyGoogleVoice v0.5 documentation</title>
+    <link rel="stylesheet" href="sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.5',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="sphinx_static/doctools.js"></script>
+    <link rel="top" title="PyGoogleVoice v0.5 documentation" href="index.html" />
+    <link rel="next" title="API Reference" href="api.html" />
+    <link rel="prev" title="Command Line Script" href="scripts.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="API Reference"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="scripts.html" title="Command Line Script"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PyGoogleVoice v0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="examples">
+<span id="id1"></span><h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<p>All of these can be found in the examples directory</p>
+<div class="section" id="place-calls">
+<h2>Place calls<a class="headerlink" href="#place-calls" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">googlevoice</span> <span class="kn">import</span> <span class="n">Voice</span>
+<span class="kn">from</span> <span class="nn">googlevoice.util</span> <span class="kn">import</span> <span class="nb">input</span>
+
+<span class="n">voice</span> <span class="o">=</span> <span class="n">Voice</span><span class="p">()</span>
+<span class="n">voice</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+
+<span class="n">outgoingNumber</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">&#39;Number to call: &#39;</span><span class="p">)</span>
+<span class="n">forwardingNumber</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">&#39;Number to call from [optional]: &#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">None</span>
+
+<span class="n">voice</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">outgoingNumber</span><span class="p">,</span> <span class="n">forwardingNumber</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="nb">input</span><span class="p">(</span><span class="s">&#39;Calling now... cancel?[y/N] &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s">&#39;y&#39;</span><span class="p">:</span>
+    <span class="n">voice</span><span class="o">.</span><span class="n">cancel</span><span class="p">(</span><span class="n">outgoingNumber</span><span class="p">,</span> <span class="n">forwardingNumber</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="download-mp3s">
+<h2>Download MP3s<a class="headerlink" href="#download-mp3s" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">googlevoice</span> <span class="kn">import</span> <span class="n">Voice</span>
+
+<span class="n">download_dir</span> <span class="o">=</span> <span class="s">&#39;.&#39;</span>
+
+<span class="n">voice</span> <span class="o">=</span> <span class="n">Voice</span><span class="p">()</span>
+<span class="n">voice</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">voice</span><span class="o">.</span><span class="n">voicemail</span><span class="p">()</span><span class="o">.</span><span class="n">messages</span><span class="p">:</span>
+    <span class="n">message</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">download_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="send-sms-messages">
+<h2>Send SMS messages<a class="headerlink" href="#send-sms-messages" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">googlevoice</span> <span class="kn">import</span> <span class="n">Voice</span>
+<span class="kn">from</span> <span class="nn">googlevoice.util</span> <span class="kn">import</span> <span class="nb">input</span>
+
+<span class="n">voice</span> <span class="o">=</span> <span class="n">Voice</span><span class="p">()</span>
+<span class="n">voice</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+
+<span class="n">phoneNumber</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">&#39;Number to send message to: &#39;</span><span class="p">)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">&#39;Message text: &#39;</span><span class="p">)</span>
+
+<span class="n">voice</span><span class="o">.</span><span class="n">send_sms</span><span class="p">(</span><span class="n">phoneNumber</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="phones">
+<h2><tt class="docutils literal"><span class="pre">Phones</span></tt><a class="headerlink" href="#phones" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">googlevoice</span> <span class="kn">import</span> <span class="n">Voice</span><span class="p">,</span><span class="n">util</span>
+
+<span class="n">voice</span> <span class="o">=</span> <span class="n">Voice</span><span class="p">()</span>
+<span class="n">voice</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+
+<span class="n">util</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">voice</span><span class="o">.</span><span class="n">phones</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="folders">
+<h2><tt class="docutils literal"><span class="pre">Folders</span></tt><a class="headerlink" href="#folders" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">googlevoice</span> <span class="kn">import</span> <span class="n">Voice</span><span class="p">,</span><span class="n">util</span><span class="p">,</span><span class="n">settings</span>
+
+<span class="n">voice</span> <span class="o">=</span> <span class="n">Voice</span><span class="p">()</span>
+<span class="n">voice</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">feed</span> <span class="ow">in</span> <span class="n">settings</span><span class="o">.</span><span class="n">FEEDS</span><span class="p">:</span>
+    <span class="n">util</span><span class="o">.</span><span class="n">print_</span><span class="p">(</span><span class="n">feed</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">voice</span><span class="p">,</span> <span class="n">feed</span><span class="p">)()</span><span class="o">.</span><span class="n">messages</span><span class="p">:</span>
+        <span class="n">util</span><span class="o">.</span><span class="n">print_</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="search">
+<h2>Search<a class="headerlink" href="#search" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">googlevoice</span> <span class="kn">import</span> <span class="n">Voice</span><span class="p">,</span><span class="n">util</span>
+
+
+<span class="n">voice</span> <span class="o">=</span> <span class="n">Voice</span><span class="p">()</span>
+<span class="n">voice</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+
+<span class="n">folder</span> <span class="o">=</span> <span class="n">voice</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="s">&#39;Search query: &#39;</span><span class="p">))</span>
+
+<span class="n">util</span><span class="o">.</span><span class="n">print_</span><span class="p">(</span><span class="s">&#39;Found </span><span class="si">%s</span><span class="s"> messages: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">folder</span><span class="p">))</span>
+<span class="n">util</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">folder</span><span class="o">.</span><span class="n">messages</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="list-voicemails">
+<h2>List voicemails<a class="headerlink" href="#list-voicemails" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">googlevoice</span> <span class="kn">import</span> <span class="n">Voice</span><span class="p">,</span><span class="n">util</span>
+
+<span class="n">voice</span> <span class="o">=</span> <span class="n">Voice</span><span class="p">()</span>
+<span class="n">voice</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">voice</span><span class="o">.</span><span class="n">voicemail</span><span class="p">()</span><span class="o">.</span><span class="n">messages</span><span class="p">:</span>
+    <span class="n">util</span><span class="o">.</span><span class="n">print_</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="delete-messages">
+<h2>Delete <tt class="docutils literal"><span class="pre">Messages</span></tt><a class="headerlink" href="#delete-messages" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">googlevoice</span> <span class="kn">import</span> <span class="n">Voice</span>
+
+<span class="n">voice</span> <span class="o">=</span> <span class="n">Voice</span><span class="p">()</span>
+<span class="n">voice</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">voice</span><span class="o">.</span><span class="n">sms</span><span class="p">()</span><span class="o">.</span><span class="n">messages</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">isRead</span><span class="p">:</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="parse-received-sms">
+<h2>Parse received SMS<a class="headerlink" href="#parse-received-sms" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#</span>
+<span class="c">#SMS test via Google Voice</span>
+<span class="c">#</span>
+<span class="c">#John Nagle</span>
+<span class="c">#   nagle@animats.com</span>
+<span class="c">#</span>
+<span class="kn">from</span> <span class="nn">googlevoice</span> <span class="kn">import</span> <span class="n">Voice</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">BeautifulSoup</span>
+
+
+<span class="k">def</span> <span class="nf">extractsms</span><span class="p">(</span><span class="n">htmlsms</span><span class="p">)</span> <span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    extractsms  --  extract SMS messages from BeautifulSoup tree of Google Voice SMS HTML.</span>
+
+<span class="sd">    Output is a list of dictionaries, one per message.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">msgitems</span> <span class="o">=</span> <span class="p">[]</span>										<span class="c"># accum message items here</span>
+    <span class="c">#	Extract all conversations by searching for a DIV with an ID at top level.</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="o">.</span><span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">htmlsms</span><span class="p">)</span>			<span class="c"># parse HTML into tree</span>
+    <span class="n">conversations</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">&quot;div&quot;</span><span class="p">,</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;id&quot;</span> <span class="p">:</span> <span class="bp">True</span><span class="p">},</span><span class="n">recursive</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">conversation</span> <span class="ow">in</span> <span class="n">conversations</span> <span class="p">:</span>
+        <span class="c">#	For each conversation, extract each row, which is one SMS message.</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">conversation</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;class&quot;</span> <span class="p">:</span> <span class="s">&quot;gc-message-sms-row&quot;</span><span class="p">})</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span> <span class="p">:</span>								<span class="c"># for all rows</span>
+            <span class="c">#	For each row, which is one message, extract all the fields.</span>
+            <span class="n">msgitem</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;id&quot;</span> <span class="p">:</span> <span class="n">conversation</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">]}</span>		<span class="c"># tag this message with conversation ID</span>
+            <span class="n">spans</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">&quot;span&quot;</span><span class="p">,</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;class&quot;</span> <span class="p">:</span> <span class="bp">True</span><span class="p">},</span> <span class="n">recursive</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">span</span> <span class="ow">in</span> <span class="n">spans</span> <span class="p">:</span>							<span class="c"># for all spans in row</span>
+                <span class="n">cl</span> <span class="o">=</span> <span class="n">span</span><span class="p">[</span><span class="s">&quot;class&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;gc-message-sms-&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+                <span class="n">msgitem</span><span class="p">[</span><span class="n">cl</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">span</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">)))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>	<span class="c"># put text in dict</span>
+            <span class="n">msgitems</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">msgitem</span><span class="p">)</span>					<span class="c"># add msg dictionary to list</span>
+    <span class="k">return</span> <span class="n">msgitems</span>
+    
+<span class="n">voice</span> <span class="o">=</span> <span class="n">Voice</span><span class="p">()</span>
+<span class="n">voice</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+
+<span class="n">voice</span><span class="o">.</span><span class="n">sms</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">extractsms</span><span class="p">(</span><span class="n">voice</span><span class="o">.</span><span class="n">sms</span><span class="o">.</span><span class="n">html</span><span class="p">):</span>
+    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="list-account-settings">
+<h2>List account settings<a class="headerlink" href="#list-account-settings" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">googlevoice</span> <span class="kn">import</span> <span class="n">Voice</span><span class="p">,</span><span class="n">util</span>
+
+
+<span class="n">voice</span> <span class="o">=</span> <span class="n">Voice</span><span class="p">()</span>
+<span class="n">voice</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+
+<span class="n">util</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">voice</span><span class="o">.</span><span class="n">settings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Examples</a><ul>
+<li><a class="reference external" href="#place-calls">Place calls</a></li>
+<li><a class="reference external" href="#download-mp3s">Download MP3s</a></li>
+<li><a class="reference external" href="#send-sms-messages">Send SMS messages</a></li>
+<li><a class="reference external" href="#phones"><tt class="docutils literal"><span class="pre">Phones</span></tt></a></li>
+<li><a class="reference external" href="#folders"><tt class="docutils literal"><span class="pre">Folders</span></tt></a></li>
+<li><a class="reference external" href="#search">Search</a></li>
+<li><a class="reference external" href="#list-voicemails">List voicemails</a></li>
+<li><a class="reference external" href="#delete-messages">Delete <tt class="docutils literal"><span class="pre">Messages</span></tt></a></li>
+<li><a class="reference external" href="#parse-received-sms">Parse received SMS</a></li>
+<li><a class="reference external" href="#list-account-settings">List account settings</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="scripts.html"
+                                  title="previous chapter">Command Line Script</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="api.html"
+                                  title="next chapter">API Reference</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="sphinx_sources/examples.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="API Reference"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="scripts.html" title="Command Line Script"
+             >previous</a> |</li>
+        <li><a href="index.html">PyGoogleVoice v0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Justin Quick &lt;justquick@gmail.com&gt;.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

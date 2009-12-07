@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation &mdash; PyGoogleVoice v0.5 documentation</title>
+    <link rel="stylesheet" href="sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.5',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="sphinx_static/doctools.js"></script>
+    <link rel="top" title="PyGoogleVoice v0.5 documentation" href="index.html" />
+    <link rel="next" title="Configuration" href="config.html" />
+    <link rel="prev" title="PyGoogleVoice Documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="config.html" title="Configuration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="PyGoogleVoice Documentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PyGoogleVoice v0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installation">
+<span id="install"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>Requirements, setup instructions, and how to get it running with a PBX</p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://www.python.org/download/">Python &gt;= 2.3</a></li>
+<li>For Python &lt; 2.6, gvoice requires <a class="reference external" href="http://code.google.com/p/simplejson/">simplejson</a></li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="setups">
+<h2>Setups<a class="headerlink" href="#setups" title="Permalink to this headline">¶</a></h2>
+<p>Stable distribution setup:</p>
+<div class="highlight-python"><pre>$ yum install python python-setuptools
+$ sudo easy_install simplejson
+$ sudo easy_install -U pygooglevoice</pre>
+</div>
+<p>Bleeding edge source code setup:</p>
+<div class="highlight-python"><pre>$ yum install python python-setuptools mercurial
+$ sudo easy_install simplejson
+$ hg clone https://pygooglevoice.googlecode.com/hg/ pygooglevoice
+$ cd pygooglevoice
+$ sudo python setup.py install</pre>
+</div>
+</div>
+<div class="section" id="asterisk-setup">
+<h2>Asterisk Setup<a class="headerlink" href="#asterisk-setup" title="Permalink to this headline">¶</a></h2>
+<p>Here is how to integrate Google Voice with a PBX. This guide was designed for <a class="reference external" href="http://pbxinaflash.net/">PBX in a flash</a>, which is built upon <a class="reference external" href="http://www.asterisk.org/">Asterisk</a></p>
+<p>The first steps are to install <a class="reference external" href="http://pbxinaflash.net/">PBX in a flash</a>. Here is a good guide for doing so <a class="reference external" href="http://knol.google.com/k/ward-mundy/pbx-in-a-flash/">http://knol.google.com/k/ward-mundy/pbx-in-a-flash/</a></p>
+<p>Running the setup above copies over a setup script to integrate into your Asterisk configuration setup. Simply run <tt class="docutils literal"><span class="pre">$</span> <span class="pre">asterisk-gvoice-setup</span></tt> answer a couple questions, then restart your PBX instance.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Installation</a><ul>
+<li><a class="reference external" href="#requirements">Requirements</a></li>
+<li><a class="reference external" href="#setups">Setups</a></li>
+<li><a class="reference external" href="#asterisk-setup">Asterisk Setup</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html"
+                                  title="previous chapter">PyGoogleVoice Documentation</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="config.html"
+                                  title="next chapter">Configuration</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="sphinx_sources/install.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="config.html" title="Configuration"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="PyGoogleVoice Documentation"
+             >previous</a> |</li>
+        <li><a href="index.html">PyGoogleVoice v0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Justin Quick &lt;justquick@gmail.com&gt;.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

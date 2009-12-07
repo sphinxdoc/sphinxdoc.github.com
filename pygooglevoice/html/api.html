@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>API Reference &mdash; PyGoogleVoice v0.5 documentation</title>
+    <link rel="stylesheet" href="sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.5',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="sphinx_static/doctools.js"></script>
+    <link rel="top" title="PyGoogleVoice v0.5 documentation" href="index.html" />
+    <link rel="next" title="Change Log" href="changelog.html" />
+    <link rel="prev" title="Examples" href="examples.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="changelog.html" title="Change Log"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Examples"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PyGoogleVoice v0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-googlevoice">
+<span id="api"></span><h1>API Reference<a class="headerlink" href="#module-googlevoice" title="Permalink to this headline">¶</a></h1>
+<p>This project aims to bring the power of the Google Voice API to the Python language in a simple,
+easy-to-use manner. Currently it allows you to place calls, send sms,
+download voicemails/recorded messages, and search the various folders of your Google Voice Accounts.
+You can use the Python API or command line script to schedule calls, check for new received calls/sms,
+or even sync your recorded voicemails/calls.
+Works for Python 2 and Python 3</p>
+<div class="section" id="voice">
+<h2>Voice<a class="headerlink" href="#voice" title="Permalink to this headline">¶</a></h2>
+<p>In addition to the methods below, <tt class="docutils literal"><span class="pre">Voice</span></tt> instances have several special methods for
+gathering information from folders in the Google Voice service. These methods are:</p>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">inbox</span></tt> - Recent, unread messages</li>
+<li><tt class="docutils literal"><span class="pre">starred</span></tt> - Starred messages</li>
+<li><tt class="docutils literal"><span class="pre">all</span></tt> - All messages</li>
+<li><tt class="docutils literal"><span class="pre">spam</span></tt> - Messages likely to be spam</li>
+<li><tt class="docutils literal"><span class="pre">trash</span></tt> - Deleted messages</li>
+<li><tt class="docutils literal"><span class="pre">voicemail</span></tt> - Voicemail messages</li>
+<li><tt class="docutils literal"><span class="pre">sms</span></tt> - Text messages</li>
+<li><tt class="docutils literal"><span class="pre">recorded</span></tt> - Recorced messages</li>
+<li><tt class="docutils literal"><span class="pre">placed</span></tt> - Outgoing messages</li>
+<li><tt class="docutils literal"><span class="pre">received</span></tt> - Incoming messages</li>
+<li><tt class="docutils literal"><span class="pre">missed</span></tt> - Messages not received</li>
+</ul>
+</blockquote>
+<p>All of these special methods operate the same way. When they are called,
+they parse the feed from the Google Voice service and return a <tt class="docutils literal"><span class="pre">Folder</span></tt> instance.
+After they have been called, you can grab the JSON and HTML data directly.</p>
+<p>Usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">voice</span><span class="o">.</span><span class="n">inbox</span><span class="p">()</span>       <span class="c"># Parses feed and returns Folder instance</span>
+<span class="gp">... </span><span class="o">&lt;</span><span class="n">Folder</span> <span class="n">inbox</span> <span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voice</span><span class="o">.</span><span class="n">inbox</span><span class="o">.</span><span class="n">json</span>    <span class="c"># Raw JSON data</span>
+<span class="gp">... </span><span class="s">u&#39;{&quot;messages&quot;:{&quot;14ef89...&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voice</span><span class="o">.</span><span class="n">inbox</span><span class="o">.</span><span class="n">html</span>    <span class="c"># Raw HTML data</span>
+<span class="gp">... </span><span class="s">u&#39;</span><span class="se">\n\n</span><span class="s">  </span><span class="se">\n</span><span class="s">&lt;div id=&quot;14fe89...&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voice</span><span class="o">.</span><span class="n">inbox</span><span class="o">.</span><span class="n">folder</span>  <span class="c"># Just returns Folder instance</span>
+<span class="gp">... </span><span class="o">&lt;</span><span class="n">Folder</span> <span class="n">inbox</span> <span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="googlevoice.Voice">
+<em class="property">class </em><tt class="descclassname">googlevoice.</tt><tt class="descname">Voice</tt><a class="headerlink" href="#googlevoice.Voice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main voice instance for interacting with the Google Voice service
+Handles login/logout and most of the baser HTTP methods</p>
+<dl class="method">
+<dt id="googlevoice.Voice.call">
+<tt class="descname">call</tt><big>(</big><em>outgoingNumber</em>, <em>forwardingNumber=None</em>, <em>phoneType=None</em>, <em>subscriberNumber=None</em><big>)</big><a class="headerlink" href="#googlevoice.Voice.call" title="Permalink to this definition">¶</a></dt>
+<dd>Make a call to an <tt class="docutils literal"><span class="pre">outgoingNumber</span></tt> from your <tt class="docutils literal"><span class="pre">forwardingNumber</span></tt> (optional).
+If you pass in your <tt class="docutils literal"><span class="pre">forwardingNumber</span></tt>, please also pass in the correct <tt class="docutils literal"><span class="pre">phoneType</span></tt></dd></dl>
+
+<dl class="method">
+<dt id="googlevoice.Voice.cancel">
+<tt class="descname">cancel</tt><big>(</big><em>outgoingNumber=None</em>, <em>forwardingNumber=None</em><big>)</big><a class="headerlink" href="#googlevoice.Voice.cancel" title="Permalink to this definition">¶</a></dt>
+<dd>Cancels a call matching outgoing and forwarding numbers (if given). 
+Will raise an error if no matching call is being placed</dd></dl>
+
+<dl class="attribute">
+<dt id="googlevoice.Voice.contacts">
+<tt class="descname">contacts</tt><a class="headerlink" href="#googlevoice.Voice.contacts" title="Permalink to this definition">¶</a></dt>
+<dd>Partial data of your Google Account Contacts related to your Voice account.
+For a more comprehensive suite of APIs, check out <a class="reference external" href="http://code.google.com/apis/contacts/docs/1.0/developers_guide_python.html">http://code.google.com/apis/contacts/docs/1.0/developers_guide_python.html</a></dd></dl>
+
+<dl class="method">
+<dt id="googlevoice.Voice.download">
+<tt class="descname">download</tt><big>(</big><em>msg</em>, <em>adir=None</em><big>)</big><a class="headerlink" href="#googlevoice.Voice.download" title="Permalink to this definition">¶</a></dt>
+<dd>Download a voicemail or recorded call MP3 matching the given <tt class="docutils literal"><span class="pre">msg</span></tt>
+which can either be a <tt class="docutils literal"><span class="pre">Message</span></tt> instance, or a SHA1 identifier. 
+Saves files to <tt class="docutils literal"><span class="pre">adir</span></tt> (defaults to current directory). 
+Message hashes can be found in <tt class="docutils literal"><span class="pre">self.voicemail().messages</span></tt> for example. 
+Returns location of saved file.</dd></dl>
+
+<dl class="method">
+<dt id="googlevoice.Voice.login">
+<tt class="descname">login</tt><big>(</big><em>email=None</em>, <em>passwd=None</em><big>)</big><a class="headerlink" href="#googlevoice.Voice.login" title="Permalink to this definition">¶</a></dt>
+<dd>Login to the service using your Google Voice account
+Credentials will be propmpted for if not given as args or in the <tt class="docutils literal"><span class="pre">~/.gvoice</span></tt> config file</dd></dl>
+
+<dl class="method">
+<dt id="googlevoice.Voice.logout">
+<tt class="descname">logout</tt><big>(</big><big>)</big><a class="headerlink" href="#googlevoice.Voice.logout" title="Permalink to this definition">¶</a></dt>
+<dd>Logs out an instance and makes sure it does not still have a session</dd></dl>
+
+<dl class="attribute">
+<dt id="googlevoice.Voice.phones">
+<tt class="descname">phones</tt><a class="headerlink" href="#googlevoice.Voice.phones" title="Permalink to this definition">¶</a></dt>
+<dd>Returns a list of <tt class="docutils literal"><span class="pre">Phone</span></tt> instances attached to your account.</dd></dl>
+
+<dl class="method">
+<dt id="googlevoice.Voice.search">
+<tt class="descname">search</tt><big>(</big><em>query</em><big>)</big><a class="headerlink" href="#googlevoice.Voice.search" title="Permalink to this definition">¶</a></dt>
+<dd>Search your Google Voice Account history for calls, voicemails, and sms
+Returns <tt class="docutils literal"><span class="pre">Folder</span></tt> instance containting matching messages</dd></dl>
+
+<dl class="method">
+<dt id="googlevoice.Voice.send_sms">
+<tt class="descname">send_sms</tt><big>(</big><em>phoneNumber</em>, <em>text</em><big>)</big><a class="headerlink" href="#googlevoice.Voice.send_sms" title="Permalink to this definition">¶</a></dt>
+<dd>Send an SMS message to a given <tt class="docutils literal"><span class="pre">phoneNumber</span></tt> with the given <tt class="docutils literal"><span class="pre">text</span></tt> message</dd></dl>
+
+<dl class="attribute">
+<dt id="googlevoice.Voice.settings">
+<tt class="descname">settings</tt><a class="headerlink" href="#googlevoice.Voice.settings" title="Permalink to this definition">¶</a></dt>
+<dd>Dict of current Google Voice settings</dd></dl>
+
+<dl class="attribute">
+<dt id="googlevoice.Voice.special">
+<tt class="descname">special</tt><a class="headerlink" href="#googlevoice.Voice.special" title="Permalink to this definition">¶</a></dt>
+<dd>Returns special identifier for your session (if logged in)</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-googlevoice.util">
+<h2>Folder<a class="headerlink" href="#module-googlevoice.util" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="googlevoice.util.Folder">
+<em class="property">class </em><tt class="descclassname">googlevoice.util.</tt><tt class="descname">Folder</tt><big>(</big><em>voice</em>, <em>name</em>, <em>data</em><big>)</big><a class="headerlink" href="#googlevoice.util.Folder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Folder wrapper for feeds from Google Voice
+Attributes are:</p>
+<blockquote>
+<ul class="simple">
+<li>totalSize: int (aka <tt class="docutils literal"><span class="pre">__len__</span></tt>)</li>
+<li>unreadCounts: dict</li>
+<li>resultsPerPage: int</li>
+<li>messages: list of Message instances</li>
+</ul>
+</blockquote>
+<dl class="attribute">
+<dt id="googlevoice.util.Folder.messages">
+<tt class="descname">messages</tt><a class="headerlink" href="#googlevoice.util.Folder.messages" title="Permalink to this definition">¶</a></dt>
+<dd>Returns a list of all messages in this folder</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="phone">
+<h2>Phone<a class="headerlink" href="#phone" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="googlevoice.util.Phone">
+<em class="property">class </em><tt class="descclassname">googlevoice.util.</tt><tt class="descname">Phone</tt><big>(</big><em>voice</em>, <em>data</em><big>)</big><a class="headerlink" href="#googlevoice.util.Phone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper for phone objects used for phone specific methods
+Attributes are:</p>
+<blockquote>
+<ul class="simple">
+<li>id: int</li>
+<li>phoneNumber: i18n phone number</li>
+<li>formattedNumber: humanized phone number string</li>
+<li>we: data dict</li>
+<li>wd: data dict</li>
+<li>verified: bool</li>
+<li>name: strign label</li>
+<li>smsEnabled: bool</li>
+<li>scheduleSet: bool</li>
+<li>policyBitmask: int</li>
+<li>weekdayTimes: list</li>
+<li>dEPRECATEDDisabled: bool</li>
+<li>weekdayAllDay: bool</li>
+<li>telephonyVerified</li>
+<li>weekendTimes: list</li>
+<li>active: bool</li>
+<li>weekendAllDay: bool</li>
+<li>enabledForOthers: bool</li>
+<li>type: int (1 - Home, 2 - Mobile, 3 - Work, 4 - Gizmo)</li>
+</ul>
+</blockquote>
+<dl class="method">
+<dt id="googlevoice.util.Phone.disable">
+<tt class="descname">disable</tt><big>(</big><big>)</big><a class="headerlink" href="#googlevoice.util.Phone.disable" title="Permalink to this definition">¶</a></dt>
+<dd>Disables this phone</dd></dl>
+
+<dl class="method">
+<dt id="googlevoice.util.Phone.enable">
+<tt class="descname">enable</tt><big>(</big><big>)</big><a class="headerlink" href="#googlevoice.util.Phone.enable" title="Permalink to this definition">¶</a></dt>
+<dd>Enables this phone for usage</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="message">
+<h2>Message<a class="headerlink" href="#message" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="googlevoice.util.Message">
+<em class="property">class </em><tt class="descclassname">googlevoice.util.</tt><tt class="descname">Message</tt><big>(</big><em>folder</em>, <em>id</em>, <em>data</em><big>)</big><a class="headerlink" href="#googlevoice.util.Message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper for all call/sms message instances stored in Google Voice
+Attributes are:</p>
+<blockquote>
+<ul class="simple">
+<li>id: SHA1 identifier</li>
+<li>isTrash: bool</li>
+<li>displayStartDateTime: datetime</li>
+<li>star: bool</li>
+<li>isSpam: bool</li>
+<li>startTime: gmtime</li>
+<li>labels: list</li>
+<li>displayStartTime: time</li>
+<li>children: str</li>
+<li>note: str</li>
+<li>isRead: bool</li>
+<li>displayNumber: str</li>
+<li>relativeStartTime: str</li>
+<li>phoneNumber: str</li>
+<li>type: int</li>
+</ul>
+</blockquote>
+<dl class="method">
+<dt id="googlevoice.util.Message.delete">
+<tt class="descname">delete</tt><big>(</big><em>trash=1</em><big>)</big><a class="headerlink" href="#googlevoice.util.Message.delete" title="Permalink to this definition">¶</a></dt>
+<dd>Moves this message to the Trash. Use <tt class="docutils literal"><span class="pre">message.delete(0)</span></tt> to move it out of the Trash.</dd></dl>
+
+<dl class="method">
+<dt id="googlevoice.util.Message.download">
+<tt class="descname">download</tt><big>(</big><em>adir=None</em><big>)</big><a class="headerlink" href="#googlevoice.util.Message.download" title="Permalink to this definition">¶</a></dt>
+<dd>Download the message MP3 (if any). 
+Saves files to <tt class="docutils literal"><span class="pre">adir</span></tt> (defaults to current directory). 
+Message hashes can be found in <tt class="docutils literal"><span class="pre">self.voicemail().messages</span></tt> for example. 
+Returns location of saved file.</dd></dl>
+
+<dl class="method">
+<dt id="googlevoice.util.Message.mark">
+<tt class="descname">mark</tt><big>(</big><em>read=1</em><big>)</big><a class="headerlink" href="#googlevoice.util.Message.mark" title="Permalink to this definition">¶</a></dt>
+<dd>Mark this message as read. Use <tt class="docutils literal"><span class="pre">message.mark(0)</span></tt> to mark it as unread.</dd></dl>
+
+<dl class="method">
+<dt id="googlevoice.util.Message.star">
+<tt class="descname">star</tt><big>(</big><em>star=1</em><big>)</big><a class="headerlink" href="#googlevoice.util.Message.star" title="Permalink to this definition">¶</a></dt>
+<dd>Star this message. Use <tt class="docutils literal"><span class="pre">message.star(0)</span></tt> to unstar it.</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="xmlparser">
+<h2>XMLParser<a class="headerlink" href="#xmlparser" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="googlevoice.util.XMLParser">
+<em class="property">class </em><tt class="descclassname">googlevoice.util.</tt><tt class="descname">XMLParser</tt><big>(</big><em>voice</em>, <em>name</em>, <em>datafunc</em><big>)</big><a class="headerlink" href="#googlevoice.util.XMLParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>XML Parser helper that can dig json and html out of the feeds. 
+The parser takes a <tt class="docutils literal"><span class="pre">Voice</span></tt> instance, page name, and function to grab data from. 
+Calling the parser calls the data function once, sets up the <tt class="docutils literal"><span class="pre">json</span></tt> and <tt class="docutils literal"><span class="pre">html</span></tt>
+attributes and returns a <tt class="docutils literal"><span class="pre">Folder</span></tt> instance for the given page:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">o</span> <span class="o">=</span> <span class="n">XMLParser</span><span class="p">(</span><span class="n">voice</span><span class="p">,</span> <span class="s">&#39;voicemail&#39;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="s">&#39;some xml payload&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o</span><span class="p">()</span>
+<span class="gp">... </span><span class="o">&lt;</span><span class="n">Folder</span> <span class="o">...&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o</span><span class="o">.</span><span class="n">json</span>
+<span class="gp">... </span><span class="s">&#39;some json payload&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o</span><span class="o">.</span><span class="n">data</span>
+<span class="gp">... </span><span class="s">&#39;loaded json payload&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o</span><span class="o">.</span><span class="n">html</span>
+<span class="gp">... </span><span class="s">&#39;some html payload&#39;</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="googlevoice.util.XMLParser.data">
+<tt class="descname">data</tt><a class="headerlink" href="#googlevoice.util.XMLParser.data" title="Permalink to this definition">¶</a></dt>
+<dd>Returns the parsed json information after calling the XMLParser</dd></dl>
+
+<dl class="attribute">
+<dt id="googlevoice.util.XMLParser.folder">
+<tt class="descname">folder</tt><a class="headerlink" href="#googlevoice.util.XMLParser.folder" title="Permalink to this definition">¶</a></dt>
+<dd>Returns associated <tt class="docutils literal"><span class="pre">Folder</span></tt> instance for given page (<tt class="docutils literal"><span class="pre">self.name</span></tt>)</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">API Reference</a><ul>
+<li><a class="reference external" href="#voice">Voice</a></li>
+<li><a class="reference external" href="#module-googlevoice.util">Folder</a></li>
+<li><a class="reference external" href="#phone">Phone</a></li>
+<li><a class="reference external" href="#message">Message</a></li>
+<li><a class="reference external" href="#xmlparser">XMLParser</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="examples.html"
+                                  title="previous chapter">Examples</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="changelog.html"
+                                  title="next chapter">Change Log</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="sphinx_sources/api.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="changelog.html" title="Change Log"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Examples"
+             >previous</a> |</li>
+        <li><a href="index.html">PyGoogleVoice v0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Justin Quick &lt;justquick@gmail.com&gt;.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

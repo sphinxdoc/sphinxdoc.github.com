@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Command Line Script &mdash; PyGoogleVoice v0.5 documentation</title>
+    <link rel="stylesheet" href="sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.5',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="sphinx_static/doctools.js"></script>
+    <link rel="top" title="PyGoogleVoice v0.5 documentation" href="index.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Configuration" href="config.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Examples"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="config.html" title="Configuration"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PyGoogleVoice v0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="command-line-script">
+<span id="scripts"></span><h1>Command Line Script<a class="headerlink" href="#command-line-script" title="Permalink to this headline">¶</a></h1>
+<p>The module also comes with a script called <tt class="docutils literal"><span class="pre">gvoice</span></tt> which can do all the wonderful stuff that the
+Python module can do easily on the command line.</p>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre>Usage: gvoice [options] commands
+    Where commands are
+
+    login (li) - log into the voice service
+    logout (lo) - log out of the service and make sure session is deleted
+    help
+
+    Voice Commands
+        call (c) - call an outgoing number from a forwarding number
+        cancel (cc) - cancel a particular call
+        download (d) - download mp3 message given id hash
+        send_sms (s) - send sms messages
+
+    Folder Views
+        search (se)
+        inbox (i)
+        voicemail (v)
+        starred (st)
+        all (a)
+        spam (sp)
+        trash (t)
+        voicemail (v)
+        sms (sm)
+        recorded (r)
+        placed (p)
+        recieved (re)
+        missed (m)
+
+Options:
+  -h, --help            show this help message and exit
+  -e EMAIL, --email=EMAIL
+                        Google Voice Account Email
+  -p PASSWD, --password=PASSWD
+                        Your account password (prompted if blank)
+  -b, --batch           Batch operations, asking for no interactive input</pre>
+</div>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre>$ gvoice -e myusername@gmail.com
+Password:
+gvoice&gt; call
+Outgoing number: 18004664411
+Forwarding number: 14075551234
+Calling...</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Command Line Script</a><ul>
+<li><a class="reference external" href="#usage">Usage</a></li>
+<li><a class="reference external" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="config.html"
+                                  title="previous chapter">Configuration</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="examples.html"
+                                  title="next chapter">Examples</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="sphinx_sources/scripts.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Examples"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="config.html" title="Configuration"
+             >previous</a> |</li>
+        <li><a href="index.html">PyGoogleVoice v0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Justin Quick &lt;justquick@gmail.com&gt;.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>

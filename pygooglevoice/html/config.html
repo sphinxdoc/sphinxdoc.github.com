@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configuration &mdash; PyGoogleVoice v0.5 documentation</title>
+    <link rel="stylesheet" href="sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.5',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="sphinx_static/doctools.js"></script>
+    <link rel="top" title="PyGoogleVoice v0.5 documentation" href="index.html" />
+    <link rel="next" title="Command Line Script" href="scripts.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="scripts.html" title="Command Line Script"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PyGoogleVoice v0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="configuration">
+<span id="config"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<p>When you first install the module, it places an ini configuration
+file in yournamed <tt class="docutils literal"><span class="pre">.gvoice</span></tt> in your home directory. This runs the <tt class="docutils literal"><span class="pre">gvoice</span></tt>
+and other scripts with your personal configuration defined in this file.
+Run by default, these parameters are prompted for.
+Edit this file and fill in your personal configuration information.
+If you enter your <tt class="docutils literal"><span class="pre">password</span></tt>, it must be raw text so watch the privileges on this file.</p>
+<div class="section" id="settings-by-section">
+<h2>Settings by Section<a class="headerlink" href="#settings-by-section" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="auth">
+<h3>auth<a class="headerlink" href="#auth" title="Permalink to this headline">¶</a></h3>
+<p>Login credentials for <a class="reference external" href="http://google.com/voice">http://google.com/voice</a></p>
+<p><strong>email</strong></p>
+<blockquote>
+The Google email account associated with Voice. Can be a gmail username, or proper email address.</blockquote>
+<p><strong>password</strong></p>
+<blockquote>
+Raw password for logging in.</blockquote>
+</div>
+<div class="section" id="gvoice">
+<h3>gvoice<a class="headerlink" href="#gvoice" title="Permalink to this headline">¶</a></h3>
+<p><strong>forwardingNumber</strong></p>
+<blockquote>
+The number that you make your calls on (eg your Google Voice number)</blockquote>
+<p><strong>phoneType</strong></p>
+<blockquote>
+<p>The type of device connected to your <tt class="docutils literal"><span class="pre">forwardingNumber</span></tt>. Options are:</p>
+<div class="highlight-python"><pre>1. Home
+2. Mobile
+3. Work
+7. Gizmo</pre>
+</div>
+<p>Defaults to <tt class="docutils literal"><span class="pre">Mobile</span></tt></p>
+</blockquote>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Configuration</a><ul>
+<li><a class="reference external" href="#settings-by-section">Settings by Section</a><ul>
+<li><a class="reference external" href="#auth">auth</a></li>
+<li><a class="reference external" href="#gvoice">gvoice</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="install.html"
+                                  title="previous chapter">Installation</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="scripts.html"
+                                  title="next chapter">Command Line Script</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="sphinx_sources/config.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="scripts.html" title="Command Line Script"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installation"
+             >previous</a> |</li>
+        <li><a href="index.html">PyGoogleVoice v0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Justin Quick &lt;justquick@gmail.com&gt;.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>
