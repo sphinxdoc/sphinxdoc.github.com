@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django Object Permissions’ documentation! &mdash; Django Object Permissions v0.1 documentation</title>
+    <link rel="stylesheet" href="sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="sphinx_static/doctools.js"></script>
+    <link rel="top" title="Django Object Permissions v0.1 documentation" href="" />
+    <link rel="next" title="Getting Started" href="getting_started.html" /> 
+  </head>
+  <body>
+<div id="docstitle">
+	<p>Django Object Permissions v0.1 documentation</p>
+</div>
+<div id="header">
+	<div id="title"><h1>Django Object Permissions’ documentation!</h1></div>
+	<ul id="headerButtons">
+		<li id="toc_button"><div class="headerButton"><a href="#">Table of Contents</a></div></li>
+		<li id="page_buttons">
+			<div class="headerButton"><a href="genindex.html" title="General Index" accesskey="I">index</a></div>
+			<div class="headerButton"><a href="getting_started.html" title="Getting Started" accesskey="N">next</a></div>
+		</li>
+	</ul>
+</div>
+
+<div id="sphinxsidebar">
+  <div class="sphinxsidebarwrapper">
+	<ul><li class="toctree-l1"><a href="">Main Page</a></li></ul>
+	<ul>
+<li class="toctree-l1"><a class="reference external" href="getting_started.html">Getting Started</a></li>
+</ul>
+
+    <div id="searchbox" style="display: none">
+      
+        <form class="search" action="search.html" method="get">
+			<div class="search-wrapper">
+			<span class="search-left"></span>
+			<input class="prettysearch" type="text" name="q" size="18" />
+			<span class="search-right">&nbsp;</span>
+			</div>
+          <input type="submit" value="Search" class="searchbutton" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+        <p class="searchtip" style="font-size: 90%">
+        Enter search terms or a module, class or function name.
+        </p>
+    </div>
+    <script type="text/javascript">$('#searchbox').show(0);</script>
+  </div>
+</div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="django-object-permissions-documentation">
+<h1>Django Object Permissions&#8217; documentation!<a class="headerlink" href="#django-object-permissions-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Django Object Permissions is a way to add a custom set of user-object or group-object permissions. It does not replace Django&#8217;s built-in permissions. Instead it augments them by adding additional ways to manage access to specific objects.</p>
+<p>You can add object permissions to existing apps (e.g. Flat Pages) without modifying the app&#8217;s code, or build it into your own application.</p>
+<p>It uses an efficient method of storing permissions; it requires only one row per user-object combination, regardless of the number of permissions granted.</p>
+<p>Our initial goals were pretty simple (in thought, not necessarily in deed):</p>
+<ul class="simple">
+<li>Have an easy way to set read/write/owner permissions on an object or row</li>
+<li>Easy to discover if a given user has a level of permission</li>
+<li>Customizable permissions by model</li>
+<li>Admin viewing/editing integration</li>
+</ul>
+<p>This is a proof-of-concept right now and we are looking for feedback for tweaks in implementation or new ideas to implement.</p>
+<p>Contents:</p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference external" href="getting_started.html#registering-permissions-for-a-model">Registering Permissions for a Model</a></li>
+<li class="toctree-l2"><a class="reference external" href="getting_started.html#admin-setup">Admin Setup</a></li>
+<li class="toctree-l2"><a class="reference external" href="getting_started.html#specifying-permission-sets">Specifying Permission Sets</a></li>
+<li class="toctree-l2"><a class="reference external" href="getting_started.html#granting-permissions">Granting Permissions</a></li>
+<li class="toctree-l2"><a class="reference external" href="getting_started.html#testing-for-permissions">Testing for Permissions</a></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference external" href="modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference external" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div> 
+        </div>
+      </div>
+    <div class="footer">
+    <p>
+      &copy; Copyright 2009, The Washington Times.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+	</p>
+    </div>
+      <div class="clearer"></div>
+    </div>
+	<div id="breadcrumbs">
+		Django Object Permissions&#8217; documentation!
+		</ul>
+	</div>
+	<script type="text/javascript" charset="utf-8" src="sphinx_static/toc.js"></script>
+  </body>
+</html>

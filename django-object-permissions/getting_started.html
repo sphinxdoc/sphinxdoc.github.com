@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting Started &mdash; Django Object Permissions v0.1 documentation</title>
+    <link rel="stylesheet" href="sphinx_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="sphinx_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="sphinx_static/jquery.js"></script>
+    <script type="text/javascript" src="sphinx_static/doctools.js"></script>
+    <link rel="top" title="Django Object Permissions v0.1 documentation" href="index.html" />
+    <link rel="prev" title="Django Object Permissions’ documentation!" href="index.html" /> 
+  </head>
+  <body>
+<div id="docstitle">
+	<p>Django Object Permissions v0.1 documentation</p>
+</div>
+<div id="header">
+	<div id="title"><h1>Getting Started</h1></div>
+	<ul id="headerButtons">
+		<li id="toc_button"><div class="headerButton"><a href="#">Table of Contents</a></div></li>
+		<li id="page_buttons">
+			<div class="headerButton"><a href="genindex.html" title="General Index" accesskey="I">index</a></div>
+			<div class="headerButton"><a href="index.html" title="Django Object Permissions’ documentation!" accesskey="P">previous</a></div>
+		</li>
+	</ul>
+</div>
+
+<div id="sphinxsidebar">
+  <div class="sphinxsidebarwrapper">
+	<ul><li class="toctree-l1"><a href="index.html">Main Page</a></li></ul>
+	<ul class="current">
+<li class="toctree-l1 current"><a class="current reference external" href="">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference external" href="#registering-permissions-for-a-model">Registering Permissions for a Model</a></li>
+<li class="toctree-l2"><a class="reference external" href="#admin-setup">Admin Setup</a></li>
+<li class="toctree-l2"><a class="reference external" href="#specifying-permission-sets">Specifying Permission Sets</a></li>
+<li class="toctree-l2"><a class="reference external" href="#granting-permissions">Granting Permissions</a></li>
+<li class="toctree-l2"><a class="reference external" href="#testing-for-permissions">Testing for Permissions</a></li>
+</ul>
+</li>
+</ul>
+
+    <div id="searchbox" style="display: none">
+      
+        <form class="search" action="search.html" method="get">
+			<div class="search-wrapper">
+			<span class="search-left"></span>
+			<input class="prettysearch" type="text" name="q" size="18" />
+			<span class="search-right">&nbsp;</span>
+			</div>
+          <input type="submit" value="Search" class="searchbutton" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+        <p class="searchtip" style="font-size: 90%">
+        Enter search terms or a module, class or function name.
+        </p>
+    </div>
+    <script type="text/javascript">$('#searchbox').show(0);</script>
+  </div>
+</div>
+
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>Install it</p>
+<p>Add it to INSTALLED_APPS</p>
+<dl class="docutils">
+<dt>Tutorial for setting up a model/admin/view:</dt>
+<dd>Existing or 3rd-party app
+Ground up</dd>
+</dl>
+<p>permissions in python</p>
+<p>reference</p>
+<div class="section" id="registering-permissions-for-a-model">
+<h2>Registering Permissions for a Model<a class="headerlink" href="#registering-permissions-for-a-model" title="Permalink to this headline">¶</a></h2>
+<p>To enable object permissions for a model, you must first register the model somewhere. <tt class="docutils literal"><span class="pre">models.py</span></tt> is a good place if you have control of the code, but it can be in <tt class="docutils literal"><span class="pre">settings.py</span></tt> or any other place that Django automatically imports.</p>
+<p>Registering a model consists of calling the <tt class="xref docutils literal"><span class="pre">objectpermissions.register()</span></tt> function with a list or tuple of permission names.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">SimpleText</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">firstname</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+    <span class="n">lastname</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+    <span class="n">favorite_color</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">firstname</span>
+
+<span class="kn">import</span> <span class="nn">objectpermissions</span>
+<span class="n">permissions</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;perm1&#39;</span><span class="p">,</span> <span class="s">&#39;perm2&#39;</span><span class="p">,</span> <span class="s">&#39;perm3&#39;</span><span class="p">,</span> <span class="s">&#39;perm4&#39;</span><span class="p">]</span>
+<span class="n">objectpermissions</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">SimpleText</span><span class="p">,</span> <span class="n">permissions</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>However, the model that you register doesn&#8217;t have to be your own. For example, to add object permissions to the <tt class="xref docutils literal"><span class="pre">FlatPage</span></tt> model:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib.flatpages.models</span> <span class="kn">import</span> <span class="n">FlatPage</span>
+<span class="kn">import</span> <span class="nn">objectpermissions</span>
+<span class="n">perms</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;read&#39;</span><span class="p">,</span> <span class="s">&#39;write&#39;</span><span class="p">,</span> <span class="s">&#39;own&#39;</span><span class="p">,</span> <span class="s">&#39;delete&#39;</span><span class="p">]</span>
+<span class="n">objectpermissions</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">FlatPage</span><span class="p">,</span> <span class="n">perms</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="admin-setup">
+<h2>Admin Setup<a class="headerlink" href="#admin-setup" title="Permalink to this headline">¶</a></h2>
+<p>There are four <tt class="docutils literal"><span class="pre">InlineModelAdmin</span></tt> classes to add to your <tt class="docutils literal"><span class="pre">ModelAdmin.inlines</span></tt> list: a tabular and stacked version for user permissions and group permissions.</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">TabularUserPermInline</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">StackedUserPermInline</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">TabularGroupPermInline</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">StackedGroupPermInline</span></tt></li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">objectpermissions.admin</span> <span class="kn">import</span> <span class="n">TabularUserPermInline</span><span class="p">,</span> <span class="n">TabularGroupPermInline</span>
+
+<span class="k">class</span> <span class="nc">SimpleTextAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;firstname&#39;</span><span class="p">,</span><span class="s">&#39;lastname&#39;</span><span class="p">,</span><span class="s">&#39;favorite_color&#39;</span><span class="p">)</span>
+    <span class="n">inlines</span> <span class="o">=</span> <span class="p">[</span><span class="n">TabularUserPermInline</span><span class="p">,</span> <span class="n">TabularGroupPermInline</span><span class="p">]</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">SimpleText</span><span class="p">,</span> <span class="n">SimpleTextAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you are modifying an existing model and you do not want to modify its source, for example the FlatPage contrib app, you can unregister its admin, modify it and re-register it.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.contrib.flatpages.models</span> <span class="kn">import</span> <span class="n">FlatPage</span>
+<span class="kn">from</span> <span class="nn">django.contrib.flatpages.admin</span> <span class="kn">import</span> <span class="n">FlatPageAdmin</span>
+<span class="kn">from</span> <span class="nn">objectpermissions.admin</span> <span class="kn">import</span> <span class="n">TabularUserPermInline</span><span class="p">,</span> <span class="n">TabularGroupPermInline</span>
+
+<span class="k">class</span> <span class="nc">MyFlatPageAdmin</span><span class="p">(</span><span class="n">FlatPageAdmin</span><span class="p">):</span>
+    <span class="n">inlines</span> <span class="o">=</span> <span class="p">[</span><span class="n">TabularUserPermInline</span><span class="p">,</span> <span class="n">TabularGroupPermInline</span><span class="p">]</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">unregister</span><span class="p">(</span><span class="n">FlatPage</span><span class="p">)</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">FlatPage</span><span class="p">,</span> <span class="n">MyFlatPageAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="specifying-permission-sets">
+<h2>Specifying Permission Sets<a class="headerlink" href="#specifying-permission-sets" title="Permalink to this headline">¶</a></h2>
+<p>Permissions can be passed as an int, using the object&#8217;s (or model&#8217;s) <tt class="docutils literal"><span class="pre">perms</span></tt> attribute:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">obj</span><span class="o">.</span><span class="n">perms</span><span class="o">.</span><span class="n">perm1</span> <span class="o">+</span> <span class="n">obj</span><span class="o">.</span><span class="n">perms</span><span class="o">.</span><span class="n">perm2</span>
+</pre></div>
+</div>
+<p>Permissions can be referenced by name:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;perm1&#39;</span>
+</pre></div>
+</div>
+<p>Permissions can be referenced by a list of names or <tt class="docutils literal"><span class="pre">int</span></tt>s:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="s">&#39;perm1&#39;</span><span class="p">,</span> <span class="s">&#39;perm2&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">perms</span><span class="o">.</span><span class="n">perm1</span><span class="p">,</span> <span class="n">objs</span><span class="o">.</span><span class="n">perms</span><span class="o">.</span><span class="n">perm2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="granting-permissions">
+<h2>Granting Permissions<a class="headerlink" href="#granting-permissions" title="Permalink to this headline">¶</a></h2>
+<p>Granting permissions to a user or group for an object requires calling the <tt class="docutils literal"><span class="pre">grant_object_perm</span></tt> method on the user or group:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">Group</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">django.contrib.flatpages.models</span> <span class="kn">import</span> <span class="n">FlatPage</span>
+
+<span class="go"># Get the User, Group and FlatPage objects</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&quot;jimbob&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;admins&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flatpg</span> <span class="o">=</span> <span class="n">FlatPage</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s">&quot;/private/stuff/&quot;</span><span class="p">)</span>
+
+<span class="go"># Grant the permissions</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">grant_object_perm</span><span class="p">(</span><span class="n">flatpg</span><span class="p">,</span> <span class="n">flatpg</span><span class="o">.</span><span class="n">perms</span><span class="o">.</span><span class="n">read</span> <span class="o">+</span> <span class="n">flatpg</span><span class="o">.</span><span class="n">perms</span><span class="o">.</span><span class="n">write</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">group</span><span class="o">.</span><span class="n">grant_object_perm</span><span class="p">(</span><span class="n">flatpg</span><span class="p">,</span> <span class="n">flatpg</span><span class="o">.</span><span class="n">perms</span><span class="o">.</span><span class="n">delete</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also grant permissions by string or list of strings:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">grant_object_perm</span><span class="p">(</span><span class="n">flatpg</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;read&#39;</span><span class="p">,</span><span class="s">&#39;write&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">group</span><span class="o">.</span><span class="n">grant_object_perm</span><span class="p">(</span><span class="n">flatpg</span><span class="p">,</span> <span class="s">&#39;delete&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="testing-for-permissions">
+<h2>Testing for Permissions<a class="headerlink" href="#testing-for-permissions" title="Permalink to this headline">¶</a></h2>
+<p>Django Object Permissions is only a framework for storing and managing permissions. Since the permissions can mean anything to any model, at some point you will have to write code to see if the user attempting to do something has the appropriate permission.</p>
+<p>There basic method for checking permissions is <tt class="docutils literal"><span class="pre">has_object_perm</span></tt>. There are two explicit variations: <tt class="docutils literal"><span class="pre">has_any_object_perm</span></tt> and <tt class="docutils literal"><span class="pre">has_all_object_perm</span></tt>. The third parameter of <tt class="docutils literal"><span class="pre">has_object_perm</span></tt> allows you to optionally make sure that the user or group has all of the permissions pass to the function.</p>
+<p>For example, continuing the above example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">has_object_perm</span><span class="p">(</span><span class="n">flatpg</span><span class="p">,</span> <span class="n">flatpg</span><span class="o">.</span><span class="n">perms</span><span class="o">.</span><span class="n">delete</span><span class="p">)</span>
+<span class="go">False</span>
+
+<span class="go"># By default it checks that the user has any of the permissions</span>
+<span class="go"># and the user has write permission</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">has_object_perm</span><span class="p">(</span><span class="n">flatpg</span><span class="p">,</span> <span class="n">flatpg</span><span class="o">.</span><span class="n">perms</span><span class="o">.</span><span class="n">delete</span> <span class="o">+</span> <span class="n">flatpg</span><span class="o">.</span><span class="n">perms</span><span class="o">.</span><span class="n">write</span><span class="p">)</span>
+<span class="go">True</span>
+
+<span class="go"># Explicit version of the default has_object_perm functionality</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">has_any_object_perm</span><span class="p">(</span><span class="n">flatpg</span><span class="p">,</span> <span class="n">flatpg</span><span class="o">.</span><span class="n">perms</span><span class="o">.</span><span class="n">delete</span> <span class="o">+</span> <span class="n">flatpg</span><span class="o">.</span><span class="n">perms</span><span class="o">.</span><span class="n">write</span><span class="p">)</span>
+<span class="go">True</span>
+
+<span class="go"># Explicit check that the user has both delete and write permissions</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">has_all_object_perm</span><span class="p">(</span><span class="n">flatpg</span><span class="p">,</span> <span class="n">flatpg</span><span class="o">.</span><span class="n">perms</span><span class="o">.</span><span class="n">delete</span> <span class="o">+</span> <span class="n">flatpg</span><span class="o">.</span><span class="n">perms</span><span class="o">.</span><span class="n">write</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>When testing a user&#8217;s permissions, it checks all the group&#8217;s in which the user belongs. For example, continuing from above:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+
+<span class="go"># The user has read and write permisison, the group has delete permission</span>
+<span class="go"># by adding the user to the group, it inherits delete permission</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">has_object_perm</span><span class="p">(</span><span class="n">flatpg</span><span class="p">,</span> <span class="n">flatpg</span><span class="o">.</span><span class="n">perms</span><span class="o">.</span><span class="n">delete</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div> 
+        </div>
+      </div>
+    <div class="footer">
+    <p>
+      &copy; Copyright 2009, The Washington Times.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+	</p>
+    </div>
+      <div class="clearer"></div>
+    </div>
+	<div id="breadcrumbs">
+		Getting Started
+		</ul>
+	</div>
+	<script type="text/javascript" charset="utf-8" src="sphinx_static/toc.js"></script>
+  </body>
+</html>
